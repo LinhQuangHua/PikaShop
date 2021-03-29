@@ -1,6 +1,6 @@
 using System;
 
-namespace PikaShop.Models
+namespace PikaShop.ViewModels
 {
     public class ErrorViewModel
     {

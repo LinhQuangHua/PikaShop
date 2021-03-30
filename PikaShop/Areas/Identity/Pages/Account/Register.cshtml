@@ -3,13 +3,31 @@
 @{
     ViewData["Title"] = "Register";
 }
+<style>
+    img {
+        width: 90%;
+        padding: 10px;
+        border-radius: 20px;
+        transition: transform .2s; 
+    }
+    /*.zoom {
+        padding: 50px;
+        background-color: green;
+        transition: transform .2s;*/ /* Animation */
+        /*width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }*/
 
+    img:hover {
+        transform: scale(1.5); 
+    }
+</style>
 <h1>@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
@@ -31,7 +49,7 @@
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
-      
+        <img src="~/image/register.jpg" alt="A Toyota Previa covered in graffiti" loading="lazy">
     </div>
 </div>
 

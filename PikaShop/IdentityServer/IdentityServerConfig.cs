@@ -16,7 +16,7 @@ namespace PikaShop.IdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
              new ApiScope[]
              {
-                  new ApiScope("rokieshop.api", "Rookie Shop API")
+                  new ApiScope("pikashop.api", "PikaShop Shop API")
              };
 
         public static IEnumerable<Client> Clients =>
@@ -41,9 +41,9 @@ namespace PikaShop.IdentityServer
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:5002/signin-oidc" },
+                    RedirectUris = { "https://localhost:44367/signin-oidc" },
 
-                    PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
+                    PostLogoutRedirectUris = { "https://localhost:44367/signout-callback-oidc" },
 
                     AllowedScopes = new List<string>
                     {

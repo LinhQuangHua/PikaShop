@@ -4,23 +4,22 @@
     ViewData["Title"] = "Register";
 }
 <style>
-    img {
+    #picture {
         width: 90%;
         padding: 10px;
         border-radius: 20px;
-        transition: transform .2s; 
+        transition: transform .2s;
     }
-    /*.zoom {
-        padding: 50px;
-        background-color: green;
-        transition: transform .2s;*/ /* Animation */
-        /*width: 200px;
-        height: 200px;
-        margin: 0 auto;
-    }*/
+    .avatar {
+        vertical-align: middle;
+        border-radius: 50%;
+        display: block;
+        margin: auto;
+        width: 40%;
+    }
 
-    img:hover {
-        transform: scale(1.5); 
+    #picture:hover {
+        transform: scale(1.5);
     }
 </style>
 <h1><i class="fa fa-user" aria-hidden="true"></i> @ViewData["Title"]</h1>
@@ -30,6 +29,7 @@
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
+            <img src="~/image/avatar-cirle.png" alt="Avatar" class="avatar">
             <div class="form-group">
                 <i class="fa fa-envelope" aria-hidden="true"></i>  <label asp-for="Input.Email"></label>
                 <input asp-for="Input.Email" class="form-control" />
@@ -49,7 +49,7 @@
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
-        <img src="~/image/register.jpg" alt="A Toyota Previa covered in graffiti" loading="lazy">
+        <img src="~/image/register.jpg" id="picture" alt="A Toyota Previa covered in graffiti" loading="lazy">
     </div>
 </div>
 

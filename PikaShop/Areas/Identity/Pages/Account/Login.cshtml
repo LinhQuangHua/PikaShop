@@ -6,44 +6,34 @@
 }
 
 <style>
-    #flexbox {
-        display: flex;
-        flex-wrap: wrap;
+    .avatar {
+        vertical-align: middle;
+        border-radius: 50%;
+        display: block;
+        margin: auto;
+        width: 40%;
     }
-
-    #flexbox > li {
-        height: 40vh;
-        flex-grow: 1;
-        list-style-type: none;
+    .col > img {
+        vertical-align: middle;
+        border-radius: 10px;
+        width: 220px;
     }
-
-        li:last-child {
-            flex-grow: 10;
-        }
-
-    #flexbox > li > img {
-        max-height: 100%;
-        min-width: 100%;
-        object-fit: cover;
-        vertical-align: bottom;
-        padding: 5px;
-    }
-
 </style>
-<h1>@ViewData["Title"]</h1>
+<h1><i class="fa fa-sign-in" aria-hidden="true"></i> @ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
+                <img src="~/image/avatar-cirle.png" alt="Avatar" class="avatar">
                 <div class="form-group">
-                    <label asp-for="Input.Email"></label>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>  <label asp-for="Input.Email"></label>
                     <input asp-for="Input.Email" class="form-control" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.Password"></label>
+                    <i class="fa fa-key" aria-hidden="true"></i>  <label asp-for="Input.Password"></label>
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
@@ -66,32 +56,46 @@
                         <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                     </p>
                     @*<p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>*@
+                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+            </p>*@
                 </div>
             </form>
         </section>
     </div>
     <div class="col-md-6 col-md-offset-2">
-        <ul id="flexbox">
-            <li>
-                <img src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05466_kwlv0n.jpg" alt="A Toyota Previa covered in graffiti" loading="lazy">
-            </li>
-            <li>
-                <img src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05621_zgtcco.jpg" alt="Interesting living room light through a window" loading="lazy">
-            </li>
-            <li>
-                <img src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05513_gfbiwi.jpg" alt="Sara on a red bike" loading="lazy">
-            </li>
-            <li>
-                <img src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05588_nb0dma.jpg" alt="XOXO venue in between talks" loading="lazy">
-            </li>
-           
-            <!--  Adding an empty <li> here so the final photo doesn't stretch like crazy. Try removing it and see what happens!  -->
-            <li></li>
-        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img src="~/image/login.jpg" />
+                </div>
+
+                <div class="col"></div>
+
+                <div class="col">
+                    <img src="~/image/login-2.jpg" />
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                    <img src="~/image/login-4.jpg" />
+                </div>
+                <div class="col"></div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col">
+                    <img style="height: 137px" src="~/image/login-3.jpg" />
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <img src="~/image/login-5.jpg" />
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

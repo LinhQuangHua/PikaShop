@@ -32,7 +32,7 @@ namespace PikaShop.CustomerSite
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:44341";
+                    options.Authority = "https://localhost:44317";
                     options.RequireHttpsMetadata = false;
                     options.GetClaimsFromUserInfoEndpoint = true;
 

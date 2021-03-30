@@ -41,9 +41,9 @@ namespace PikaShop.IdentityServer
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:44367/signin-oidc" },
+                    RedirectUris = { "https://localhost:44357/signin-oidc" },
 
-                    PostLogoutRedirectUris = { "https://localhost:44367/signout-callback-oidc" },
+                    PostLogoutRedirectUris = { "https://localhost:44357/signout-callback-oidc" },
 
                     AllowedScopes = new List<string>
                     {
@@ -51,7 +51,28 @@ namespace PikaShop.IdentityServer
                         IdentityServerConstants.StandardScopes.Profile,
                         "pikashop.api"
                     }
-                }
+                },
+
+                new Client
+                {
+                    ClientId = "swagger",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.Code,
+
+                    RequireConsent = false,
+                    RequirePkce = true,
+
+                    RedirectUris =           { $"https://localhost:44317/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { $"https://localhost:44317/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins =     { $"https://localhost:44317" },
+
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "rookieshop.api"
+                    }
+                },
             };
     }
 }

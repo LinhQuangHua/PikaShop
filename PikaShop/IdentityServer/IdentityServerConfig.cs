@@ -70,7 +70,7 @@ namespace PikaShop.IdentityServer
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "rookieshop.api"
+                        "pikashop.api"
                     }
                 },
             };

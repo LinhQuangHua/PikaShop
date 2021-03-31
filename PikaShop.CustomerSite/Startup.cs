@@ -44,7 +44,7 @@ namespace PikaShop.CustomerSite
 
                     options.Scope.Add("openid");
                     options.Scope.Add("profile");
-                    options.Scope.Add("rookieshop.api");
+                    options.Scope.Add("pikashop.api");
 
                     options.TokenValidationParameters = new TokenValidationParameters
                     {

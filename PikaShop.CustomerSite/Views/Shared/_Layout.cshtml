@@ -74,7 +74,13 @@
                                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                         </li>
                                         <li>
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                            <a href="#">Category <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="#">Card</a></li>
+                                                <li><a href="#">Game</a></li>
+                                                <li><a href="#">Figure</a></li>
+                                                <li><a href="#">Soft Toy</a></li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <a href="#">Blog <i class="ti-angle-down"></i></a>
@@ -83,7 +89,7 @@
                                                 <li><a href="single-blog.html">Single-Blog</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="contact.html">About</a></li>
                                         <partial name="_LoginPartial" />
                                     </ul>
                                 </nav>
@@ -128,7 +134,7 @@
                                 <li><a href="#">Card</a></li>
                                 <li><a href="#">Game</a></li>
                                 <li><a href="#">Figure</a></li>
-                                <li><a href="#">Soft toy</a></li>
+                                <li><a href="#">Soft Toy</a></li>
                             </ul>
                         </div>
                     </div>
@@ -142,7 +148,9 @@
                                 <li><a href="#">About Us</a></li>
                                 <li><a href="#">Shop</a></li>
                                 <li><a href="#">Login</a></li>
-                                <li><a href="#">Blog</a></li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

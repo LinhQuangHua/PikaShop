@@ -13,6 +13,7 @@ namespace PikaShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize("Bearer")]
     public class BrandsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

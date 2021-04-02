@@ -17,7 +17,7 @@ namespace PikaShop.Models
 
         [ForeignKey("ApplicationUsers")]
         public string ApplicationUserId { get; set; }
-        public virtual User_RatingProduct ApplicationUser { get; set; }
+        public virtual User ApplicationUser { get; set; }
 
         [ForeignKey("Product")]
         public int id_product { get; set; }
@@ -25,9 +25,5 @@ namespace PikaShop.Models
         public Product Product { get; set; }
 
 
-    }
-    public class User_RatingProduct : IdentityUser
-    {
-        public virtual RatingProduct RatingProduct { get; set; }
     }
 }

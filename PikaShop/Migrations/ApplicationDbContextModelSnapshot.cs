@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PikaShop.Data;
 
-namespace PikaShop.Data.Migrations
+namespace PikaShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210402081714_AddImageInPost")]
-    partial class AddImageInPost
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,6 +240,21 @@ namespace PikaShop.Data.Migrations
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("PikaShop.Models.Category", b =>
+                {
+                    b.Property<int>("id_category")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("name_category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id_category");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("PikaShop.Models.CommentPost", b =>
                 {
                     b.Property<int>("id_comment")
@@ -266,13 +279,94 @@ namespace PikaShop.Data.Migrations
 
                     b.HasKey("id_comment");
 
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique()
-                        .HasFilter("[ApplicationUserId] IS NOT NULL");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("id_post");
 
                     b.ToTable("CommentPosts");
+                });
+
+            modelBuilder.Entity("PikaShop.Models.Delivery", b =>
+                {
+                    b.Property<int>("id_delivery")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("end_delivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("name_delivery")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("price_delivery")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("start_delivery")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id_delivery");
+
+                    b.ToTable("Deliveries");
+                });
+
+            modelBuilder.Entity("PikaShop.Models.Order", b =>
+                {
+                    b.Property<int>("id_order")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("id_delivery")
+                        .HasColumnType("int");
+
+                    b.Property<string>("note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("order_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("state")
+                        .HasColumnType("int");
+
+                    b.HasKey("id_order");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("id_delivery");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("PikaShop.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("id_order_detail")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("id_order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_product")
+                        .HasColumnType("int");
+
+                    b.Property<int>("quantity")
+                        .HasColumnType("int");
+
+                    b.Property<float>("unit_price")
+                        .HasColumnType("real");
+
+                    b.HasKey("id_order_detail");
+
+                    b.HasIndex("id_order");
+
+                    b.HasIndex("id_product");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("PikaShop.Models.Post", b =>
@@ -316,6 +410,77 @@ namespace PikaShop.Data.Migrations
                     b.ToTable("Posts");
                 });
 
+            modelBuilder.Entity("PikaShop.Models.Product", b =>
+                {
+                    b.Property<int>("id_product")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("height")
+                        .HasColumnType("real");
+
+                    b.Property<int>("id_brand")
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_category")
+                        .HasColumnType("int");
+
+                    b.Property<string>("image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name_product")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("price")
+                        .HasColumnType("real");
+
+                    b.Property<int>("quantity")
+                        .HasColumnType("int");
+
+                    b.Property<float>("weight")
+                        .HasColumnType("real");
+
+                    b.HasKey("id_product");
+
+                    b.HasIndex("id_brand");
+
+                    b.HasIndex("id_category");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("PikaShop.Models.RatingProduct", b =>
+                {
+                    b.Property<int>("id_rating")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("id_product")
+                        .HasColumnType("int");
+
+                    b.HasKey("id_rating");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("id_product");
+
+                    b.ToTable("RatingProducts");
+                });
+
             modelBuilder.Entity("PikaShop.Models.Topic", b =>
                 {
                     b.Property<int>("id_topic")
@@ -331,11 +496,11 @@ namespace PikaShop.Data.Migrations
                     b.ToTable("Topics");
                 });
 
-            modelBuilder.Entity("PikaShop.Models.ApplicationUser", b =>
+            modelBuilder.Entity("PikaShop.Models.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.HasDiscriminator().HasValue("ApplicationUser");
+                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -391,9 +556,9 @@ namespace PikaShop.Data.Migrations
 
             modelBuilder.Entity("PikaShop.Models.CommentPost", b =>
                 {
-                    b.HasOne("PikaShop.Models.ApplicationUser", "ApplicationUser")
-                        .WithOne("CommentPost")
-                        .HasForeignKey("PikaShop.Models.CommentPost", "ApplicationUserId");
+                    b.HasOne("PikaShop.Models.User", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("PikaShop.Models.Post", "Post")
                         .WithMany()
@@ -404,6 +569,42 @@ namespace PikaShop.Data.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("PikaShop.Models.Order", b =>
+                {
+                    b.HasOne("PikaShop.Models.User", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("PikaShop.Models.Delivery", "Delivery")
+                        .WithMany()
+                        .HasForeignKey("id_delivery")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Delivery");
+                });
+
+            modelBuilder.Entity("PikaShop.Models.OrderDetail", b =>
+                {
+                    b.HasOne("PikaShop.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("id_order")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PikaShop.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("id_product")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("PikaShop.Models.Post", b =>
@@ -417,9 +618,40 @@ namespace PikaShop.Data.Migrations
                     b.Navigation("Topic");
                 });
 
-            modelBuilder.Entity("PikaShop.Models.ApplicationUser", b =>
+            modelBuilder.Entity("PikaShop.Models.Product", b =>
                 {
-                    b.Navigation("CommentPost");
+                    b.HasOne("PikaShop.Models.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("id_brand")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PikaShop.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("id_category")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("PikaShop.Models.RatingProduct", b =>
+                {
+                    b.HasOne("PikaShop.Models.User", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("PikaShop.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("id_product")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

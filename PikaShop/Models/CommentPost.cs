@@ -18,18 +18,12 @@ namespace PikaShop.Models
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
-
-        public virtual User_CommentPost ApplicationUser { get; set; }
+        public virtual User ApplicationUser { get; set; }
 
         [ForeignKey("Post")]
         public int id_post { get; set; }
 
         public Post Post { get; set; }
 
-    }
-
-    public class User_CommentPost : IdentityUser
-    {
-        public virtual CommentPost CommentPost { get; set; }
     }
 }

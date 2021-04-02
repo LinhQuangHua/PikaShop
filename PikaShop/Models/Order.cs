@@ -19,7 +19,7 @@ namespace PikaShop.Models
 
         [ForeignKey("ApplicationUsers")]
         public string ApplicationUserId { get; set; }
-        public virtual User_Order ApplicationUser { get; set; }
+        public virtual User ApplicationUser { get; set; }
 
         [ForeignKey("Delivery")]
         public int id_delivery { get; set; }
@@ -27,10 +27,5 @@ namespace PikaShop.Models
         public Delivery Delivery { get; set; }
 
 
-    }
-
-    public class User_Order : IdentityUser
-    {
-        public virtual Order Order { get; set; }
     }
 }

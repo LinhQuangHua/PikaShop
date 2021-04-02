@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PikaShop.Data;
 
 namespace PikaShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210402080707_CommentPost")]
+    partial class CommentPost
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,6 +252,9 @@ namespace PikaShop.Data.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int?>("Postid_post")
+                        .HasColumnType("int");
+
                     b.Property<string>("comment")
                         .HasColumnType("nvarchar(max)");
 
@@ -268,7 +273,7 @@ namespace PikaShop.Data.Migrations
                         .IsUnique()
                         .HasFilter("[ApplicationUserId] IS NOT NULL");
 
-                    b.HasIndex("id_post");
+                    b.HasIndex("Postid_post");
 
                     b.ToTable("CommentPosts");
                 });
@@ -291,15 +296,6 @@ namespace PikaShop.Data.Migrations
 
                     b.Property<int>("id_topic")
                         .HasColumnType("int");
-
-                    b.Property<string>("image_01")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("image_02")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("image_03")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("state")
                         .HasColumnType("int");
@@ -395,9 +391,7 @@ namespace PikaShop.Data.Migrations
 
                     b.HasOne("PikaShop.Models.Post", "Post")
                         .WithMany()
-                        .HasForeignKey("id_post")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Postid_post");
 
                     b.Navigation("ApplicationUser");
 

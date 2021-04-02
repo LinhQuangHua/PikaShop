@@ -15,5 +15,8 @@ namespace PikaShop.Data
         }
 
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Topic> Topics { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<CommentPost> CommentPosts { get; set; }
     }
 }

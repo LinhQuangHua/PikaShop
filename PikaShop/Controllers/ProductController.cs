@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace PikaShop.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
+    [Authorize("Bearer")]
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,7 +29,17 @@ namespace PikaShop.Controllers
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProducts()
         {
             return await _context.Products
-                .Select(x => new ProductVm { id_product = x.id_product, name_product = x.name_product })
+                .Select(x => new ProductVm { 
+                    id_product = x.id_product, 
+                    name_product = x.name_product,
+                    image = x.image,
+                    price = x.price,
+                    height = x.height,
+                    weight = x.weight,
+                    quantity = x.quantity,
+                    id_brand = x.id_brand,
+                    id_category = x.id_category
+                })
                 .ToListAsync();
         }
 
@@ -44,7 +57,14 @@ namespace PikaShop.Controllers
             var productVm = new ProductVm
             {
                 id_product = product.id_product,
-                name_product = product.name_product
+                name_product = product.name_product,
+                image = product.image,
+                price = product.price,
+                height = product.height,
+                weight = product.weight,
+                quantity = product.quantity,
+                id_brand = product.id_brand,
+                id_category = product.id_category
             };
 
             return productVm;
@@ -62,6 +82,13 @@ namespace PikaShop.Controllers
             }
 
             product.name_product = productCreateRequest.name_product;
+            product.image = productCreateRequest.image;
+            product.price = productCreateRequest.price;
+            product.height = productCreateRequest.height;
+            product.weight = productCreateRequest.weight;
+            product.quantity = productCreateRequest.quantity;
+            product.id_brand = productCreateRequest.id_brand;
+            product.id_category = productCreateRequest.id_category;
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -73,13 +100,31 @@ namespace PikaShop.Controllers
         {
             var product = new Product
             {
-                name_product = productCreateRequest.name_product
-            };
+                name_product = productCreateRequest.name_product,
+                image = productCreateRequest.image,
+                price = productCreateRequest.price,
+                height = productCreateRequest.height,
+                weight = productCreateRequest.weight,
+                quantity = productCreateRequest.quantity,
+                id_brand = productCreateRequest.id_brand,
+                id_category = productCreateRequest.id_category
+        };
 
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.id_product }, new ProductVm { id_product = product.id_product, name_product = product.name_product });
+            return CreatedAtAction("GetProduct", new { id = product.id_product }, 
+            new ProductVm { 
+                id_product = product.id_product, 
+                name_product = product.name_product,
+                image = product.image,
+                price = product.price,
+                height = product.height,
+                weight = product.weight,
+                quantity = product.quantity,
+                id_brand = product.id_brand,
+                id_category = product.id_category
+            });
         }
 
         [HttpDelete("{id}")]

@@ -1,0 +1,46 @@
+﻿@model IList<PikaShop.Shared.ProductVm>
+
+@*<div class="card" style="width: 18rem;">
+    @foreach (var product in Model)
+    { 
+        <img src="~/img/product/Pokemon_Sword.jpg" class="card-img-top" alt="Image game."/>
+        <div class="card-body">
+            <h5 class="card-title">@product.name_product</h5>
+            <p class="card-text">@product.description</p>
+            <p class="card-text">@product.price</p>
+            <a href="#" class="btn btn-primary">Buy Now!</a>
+        </div>
+    }
+</div>*@
+
+<div class="service_area" style="padding-top: 80px;">
+    <div class="container">
+        <div class="row justify-content-center ">
+            <div class="col-lg-7 col-md-10">
+                <div class="section_title text-center mb-95">
+                    <h3>New Game!</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="single_service">
+                    <div class="service_content text-center">
+                        <div class="card" style="width: 18rem;">
+                            @foreach (var product in Model)
+                            { 
+                                <img src="~/img/product/Pokemon_Sword.jpg" class="card-img-top" alt="Image game."/>
+                                <div class="card-body">
+                                    <h5 class="card-title">@product.name_product</h5>
+                                    <p class="card-text">@product.description</p>
+                                    <p class="card-text">@product.price</p>
+                                    <a href="#" class="btn btn-primary">Buy Now!</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

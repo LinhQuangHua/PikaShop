@@ -59,7 +59,7 @@ namespace PikaShop.CustomerSite
                 });
 
             services.AddHttpClient();
-            //services.AddTransient<IProductClient, ProductClient>();
+            services.AddHttpClient<IProductApiClient, ProductApiClient>();
             services.AddHttpClient<IBrandApiClient, BrandApiClient>();
             services.AddHttpClient<ICategoryApiClient, CategoryApiClient>();
             services.AddControllersWithViews();

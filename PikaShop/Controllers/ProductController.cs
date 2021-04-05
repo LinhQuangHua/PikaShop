@@ -29,13 +29,14 @@ namespace PikaShop.Controllers
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProducts()
         {
             return await _context.Products
-                .Select(x => new ProductVm { 
-                    id_product = x.id_product, 
+                .Select(x => new ProductVm {
+                    id_product = x.id_product,
                     name_product = x.name_product,
                     image = x.image,
                     price = x.price,
                     height = x.height,
                     weight = x.weight,
+                    description = x.description,
                     quantity = x.quantity,
                     id_brand = x.id_brand,
                     id_category = x.id_category
@@ -62,6 +63,7 @@ namespace PikaShop.Controllers
                 price = product.price,
                 height = product.height,
                 weight = product.weight,
+                description = product.description,
                 quantity = product.quantity,
                 id_brand = product.id_brand,
                 id_category = product.id_category
@@ -86,6 +88,7 @@ namespace PikaShop.Controllers
             product.price = productCreateRequest.price;
             product.height = productCreateRequest.height;
             product.weight = productCreateRequest.weight;
+            product.description = productCreateRequest.description;
             product.quantity = productCreateRequest.quantity;
             product.id_brand = productCreateRequest.id_brand;
             product.id_category = productCreateRequest.id_category;
@@ -105,6 +108,7 @@ namespace PikaShop.Controllers
                 price = productCreateRequest.price,
                 height = productCreateRequest.height,
                 weight = productCreateRequest.weight,
+                description = productCreateRequest.description,
                 quantity = productCreateRequest.quantity,
                 id_brand = productCreateRequest.id_brand,
                 id_category = productCreateRequest.id_category
@@ -121,6 +125,7 @@ namespace PikaShop.Controllers
                 price = product.price,
                 height = product.height,
                 weight = product.weight,
+                description = product.description,
                 quantity = product.quantity,
                 id_brand = product.id_brand,
                 id_category = product.id_category

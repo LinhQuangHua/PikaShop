@@ -1,0 +1,51 @@
+﻿@model IList<PikaShop.Shared.ProductVm>
+<style>
+    a.btn.btn-primary {
+        display: block;
+        margin: auto;
+    }
+
+    .card {
+        width: 15rem;
+    }
+
+    .card-title {
+        text-align: center;
+    }
+
+    img {
+        padding: 1rem;
+    }
+
+    .price {
+        font-weight: 100;
+    }
+
+    .card-description {
+        color: black;
+        font-style: italic;
+    }
+
+    section_title.text-center {
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+</style>
+<div class="section_title text-center">
+    <h3>New Game!</h3>
+</div>
+<div class="row">
+    @foreach (var product in Model)
+    {
+<div class="col">
+    <div class="card">
+        <img src="~/img/product/@product.image" class="card-img-top" alt="Image game." />
+        <div class="card-body">
+            <h5 class="card-title">@product.name_product</h5>
+            <p class="card-description">@product.description</p>
+            <p class="price">Price: $@product.price</p>
+            <a href="#" class="btn btn-primary">Buy Now!</a>
+        </div>
+    </div>
+</div>}
+</div>

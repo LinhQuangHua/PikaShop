@@ -81,12 +81,9 @@
                                             </ul>*@
                                             @await Component.InvokeAsync("BrandMenu")
                                         </li>
-                                        <li>
-                                            <a href="#">Blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="single-blog.html">Single-Blog</a></li>
-                                            </ul>
+                                         <li>
+                                            <a href="#">Categories <i class="ti-angle-down"></i></a>
+                                            @await Component.InvokeAsync("CategoryMenu")
                                         </li>
                                         <li><a href="contact.html">About</a></li>
                                         <partial name="_LoginPartial" />

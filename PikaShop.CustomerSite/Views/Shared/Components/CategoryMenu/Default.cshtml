@@ -1,0 +1,8 @@
+﻿@model IList<PikaShop.Shared.CategoryVm>
+
+<ul class="submenu">
+    @foreach (var category in Model)
+    {
+        <li><a href="#">@category.name_category</a></li>
+    }
+</ul>

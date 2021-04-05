@@ -10,10 +10,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PikaShop.Data;
 using PikaShop.IdentityServer;
+using PikaShop.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace PikaShop
 {
@@ -32,6 +32,9 @@ namespace PikaShop
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IStorageService, FileStorageService>();
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)

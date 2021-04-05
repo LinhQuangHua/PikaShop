@@ -41,18 +41,17 @@
 <div class="row">
     @foreach (var product in Model)
     {
-        <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
-            <div class="col">
-                <div class="card">
-                    <img src="~/img/product/@product.image" class="card-img-top" alt="Image game." />
-                    <div class="card-body">
-                        <h5 class="card-title">@product.name_product</h5>
-                        <p class="card-description">@product.description</p>
-                        <p class="price">Price: $@product.price</p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a>
-                    </div>
-                </div>
+<a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
+    <div class="col">
+        <div class="card">
+            <img src="~/user-content/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
+            <div class="card-body">
+                <h5 class="card-title">@product.name_product</h5>
+                <p class="card-description">@product.description</p>
+                <p class="price">Price: $@product.price</p>
+                <a href="#" class="btn btn-primary">Buy Now!</a>
             </div>
-        </a>    
-     }
+        </div>
+    </div>
+</a>}
 </div>

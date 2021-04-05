@@ -6,5 +6,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.0.0" />
 	</ItemGroup>
 </Project>

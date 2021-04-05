@@ -12,7 +12,10 @@ namespace PikaShop.Shared
 
         public string name_product { get; set; }
 
-        public string image { get; set; }
+        //public string image { get; set; }
+
+        public string ThumbnailImageUrl { get; set; }
+
 
         public float price { get; set; }
 

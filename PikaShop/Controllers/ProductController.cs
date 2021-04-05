@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PikaShop.Data;
 using PikaShop.Models;
+using PikaShop.Services;
 using PikaShop.Shared;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 
@@ -18,10 +22,11 @@ namespace PikaShop.Controllers
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public ProductController(ApplicationDbContext context)
+        private readonly IStorageService _storageService;
+        public ProductController(ApplicationDbContext context, IStorageService storageService)
         {
             _context = context;
+            _storageService = storageService;
         }
 
         [HttpGet]
@@ -32,7 +37,7 @@ namespace PikaShop.Controllers
                 .Select(x => new ProductVm {
                     id_product = x.id_product,
                     name_product = x.name_product,
-                    image = x.image,
+                    ThumbnailImageUrl = x.image,
                     price = x.price,
                     height = x.height,
                     weight = x.weight,
@@ -59,7 +64,6 @@ namespace PikaShop.Controllers
             {
                 id_product = product.id_product,
                 name_product = product.name_product,
-                image = product.image,
                 price = product.price,
                 height = product.height,
                 weight = product.weight,
@@ -68,6 +72,8 @@ namespace PikaShop.Controllers
                 id_brand = product.id_brand,
                 id_category = product.id_category
             };
+
+            productVm.ThumbnailImageUrl = _storageService.GetFileUrl(product.image);
 
             return productVm;
         }
@@ -99,12 +105,11 @@ namespace PikaShop.Controllers
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public async Task<ActionResult<ProductVm>> PostProduct(ProductCreateRequest productCreateRequest)
+        public async Task<ActionResult<ProductVm>> PostProduct([FromForm]ProductCreateRequest productCreateRequest)
         {
             var product = new Product
             {
                 name_product = productCreateRequest.name_product,
-                image = productCreateRequest.image,
                 price = productCreateRequest.price,
                 height = productCreateRequest.height,
                 weight = productCreateRequest.weight,
@@ -114,22 +119,36 @@ namespace PikaShop.Controllers
                 id_category = productCreateRequest.id_category
         };
 
+            if (productCreateRequest.ThumbnailImage != null)
+            {
+                product.image = await SaveFile(productCreateRequest.ThumbnailImage);
+            }
+
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.id_product }, 
-            new ProductVm { 
-                id_product = product.id_product, 
-                name_product = product.name_product,
-                image = product.image,
-                price = product.price,
-                height = product.height,
-                weight = product.weight,
-                description = product.description,
-                quantity = product.quantity,
-                id_brand = product.id_brand,
-                id_category = product.id_category
-            });
+            return CreatedAtAction("GetProduct", new { id = product.id_product }, null 
+            //new ProductVm { 
+            //    id_product = product.id_product, 
+            //    name_product = product.name_product,
+            //    image = product.image,
+            //    price = product.price,
+            //    height = product.height,
+            //    weight = product.weight,
+            //    description = product.description,
+            //    quantity = product.quantity,
+            //    id_brand = product.id_brand,
+            //    id_category = product.id_category
+            //}
+            );
+        }
+
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
+            return fileName;
         }
 
         [HttpDelete("{id}")]

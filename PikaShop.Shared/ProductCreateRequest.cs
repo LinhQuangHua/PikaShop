@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace PikaShop.Shared
 {
@@ -13,6 +11,8 @@ namespace PikaShop.Shared
         public string name_product { get; set; }
 
         public string image { get; set; }
+
+        public IFormFile ThumbnailImage { get; set; }
 
         public float price { get; set; }
 

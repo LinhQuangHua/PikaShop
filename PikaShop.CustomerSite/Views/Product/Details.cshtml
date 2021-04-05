@@ -1,0 +1,45 @@
+﻿@model PikaShop.Shared.ProductVm
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<form method="post">
+    <div class="p-5 border rounded">
+        <div class="form-group row ">
+            <div class="col-6">
+
+                <div class="product-name">
+                    <h1></h1>
+                </div>
+                <hr />
+                <p>
+                    <span class="item-title">Mã sản phẩm:</span>
+                    <span>
+                        <strong>
+                            @Model.id_product
+                        </strong>
+                    </span>
+                </p>
+                <p>
+                    <span class="item-title">Mô tả: @Model.description</span>
+                </p>
+                <p class="availability in-stock">
+                    <span class="item-title">
+                        <i>Số lượng: </i>
+                    </span>
+                    <span>
+                        <strong>
+                            @Model.quantity
+                        </strong>
+                    </span>
+                </p>
+                <div class="price-box">
+                    <h3>@Model.price.ToString().Insert(3, ".") VNĐ</h3>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+</form>

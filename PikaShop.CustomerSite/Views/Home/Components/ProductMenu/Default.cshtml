@@ -45,6 +45,7 @@
             <p class="card-description">@product.description</p>
             <p class="price">Price: $@product.price</p>
             <a href="#" class="btn btn-primary">Buy Now!</a>
+            <a asp-action="Details" asp-controller="Product" class="btn btn-success" asp-route-id="@product.id_product">Xem thêm</a>
         </div>
     </div>
 </div>}

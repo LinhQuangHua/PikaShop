@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PikaShop.CustomerSite.Models;
+using PikaShop.CustomerSite.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,15 +13,18 @@ namespace PikaShop.CustomerSite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBrandApiClient _brandApiClient;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IBrandApiClient brandApiClient)
         {
             _logger = logger;
+            _brandApiClient = brandApiClient;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var brands = await _brandApiClient.GetBrands();
+            return View(brands);
         }
 
         public IActionResult Privacy()

@@ -1,13 +1,18 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using PikaShop.CustomerSite.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace PikaShop.CustomerSite
@@ -53,6 +58,18 @@ namespace PikaShop.CustomerSite
                     };
                 });
 
+            //var configureClient = new Action<IServiceProvider, HttpClient>(async (provider, client) =>
+            //{
+            //    var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
+            //    var accessToken = await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+
+            //    client.BaseAddress = Configuration.GetServiceUri("https://localhost:44317");
+            //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer");
+            //});
+
+            services.AddHttpClient();
+            //services.AddTransient<IProductClient, ProductClient>();
+            services.AddHttpClient<IBrandApiClient, BrandApiClient>();
             services.AddControllersWithViews();
         }
 

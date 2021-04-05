@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using PikaShop.Shared;
+@model IList<BrandVm>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -75,11 +77,17 @@
                                         </li>
                                         <li>
                                             <a href="#">Category <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
+                                            @*<ul class="submenu">
                                                 <li><a href="#">Card</a></li>
                                                 <li><a href="#">Game</a></li>
                                                 <li><a href="#">Figure</a></li>
                                                 <li><a href="#">Soft Toy</a></li>
+                                            </ul>*@
+                                            <ul>
+                                                @foreach (var brand in Model)
+                                                {
+                                                    <li>@brand.Name</li>
+                                                }
                                             </ul>
                                         </li>
                                         <li>

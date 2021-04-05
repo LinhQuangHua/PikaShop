@@ -4,42 +4,31 @@
     ViewData["Title"] = "Details";
 }
 
-<form method="post">
-    <div class="p-5 border rounded">
-        <div class="form-group row ">
-            <div class="col-6">
-
-                <div class="product-name">
-                    <h1></h1>
-                </div>
-                <hr />
-                <p>
-                    <span class="item-title">Mã sản phẩm:</span>
-                    <span>
-                        <strong>
-                            @Model.id_product
-                        </strong>
-                    </span>
-                </p>
-                <p>
-                    <span class="item-title">Mô tả: @Model.description</span>
-                </p>
-                <p class="availability in-stock">
-                    <span class="item-title">
-                        <i>Số lượng: </i>
-                    </span>
-                    <span>
-                        <strong>
-                            @Model.quantity
-                        </strong>
-                    </span>
-                </p>
-                <div class="price-box">
-                    <h3>@Model.price.ToString().Insert(3, ".") VNĐ</h3>
-                </div>
-            </div>
-        </div>
-        <hr />
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-4">
+        <img src="~/img/product/@Model.image" class="card-img-top" alt="Image game." style="padding: 3rem"/>
     </div>
-
-</form>
+    <div class="col-4" style="padding-top: 3rem">
+        <h3 class="product-name">@Model.name_product</h3>
+        <hr />
+        <p>
+            <span class="item-title">Height: @Model.height cm</span>
+        </p>
+        <p>
+            <span class="item-title">Weight: @Model.weight kg</span>
+        </p>
+        <p>
+            <span class="item-title">Description: @Model.description</span>
+        </p>
+        <p>
+            <span class="item-title">Quantity: @Model.quantity</span>
+        </p>
+        <p>
+            <span class="item-title">Price: $@Model.price</span>
+        </p>
+        <a href="#" class="btn btn-success">Add to cart!</a>
+        <a href="#" class="btn btn-primary">Buy Now!</a>
+    </div>
+    <div class="col-2"></div>
+</div>

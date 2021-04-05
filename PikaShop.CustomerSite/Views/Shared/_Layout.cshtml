@@ -1,6 +1,4 @@
-﻿@using PikaShop.Shared;
-@model IList<BrandVm>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -76,19 +74,12 @@
                                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                         </li>
                                         <li>
-                                            <a href="#">Category <i class="ti-angle-down"></i></a>
+                                            <a href="#">Brands <i class="ti-angle-down"></i></a>
                                             @*<ul class="submenu">
                                                 <li><a href="#">Card</a></li>
                                                 <li><a href="#">Game</a></li>
-                                                <li><a href="#">Figure</a></li>
-                                                <li><a href="#">Soft Toy</a></li>
                                             </ul>*@
-                                            <ul>
-                                                @foreach (var brand in Model)
-                                                {
-                                                    <li>@brand.Name</li>
-                                                }
-                                            </ul>
+                                            @await Component.InvokeAsync("BrandMenu")
                                         </li>
                                         <li>
                                             <a href="#">Blog <i class="ti-angle-down"></i></a>

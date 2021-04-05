@@ -13,18 +13,16 @@ namespace PikaShop.CustomerSite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IBrandApiClient _brandApiClient;
 
-        public HomeController(ILogger<HomeController> logger,IBrandApiClient brandApiClient)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _brandApiClient = brandApiClient;
+
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var brands = await _brandApiClient.GetBrands();
-            return View(brands);
+            return View();
         }
 
         public IActionResult Privacy()

@@ -30,5 +30,12 @@ namespace PikaShop.CustomerSite.Services
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<ProductVm>();
         }
+
+        public async Task<IList<ProductVm>> GetProductByCategory(int id)
+        {
+            var response = await _client.GetAsync("https://localhost:44317/api/product/category/" + id);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<IList<ProductVm>>();
+        }
     }
 }

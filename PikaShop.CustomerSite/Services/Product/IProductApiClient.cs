@@ -9,5 +9,7 @@ namespace PikaShop.CustomerSite.Services
         Task<IList<ProductVm>> GetProducts();
 
         Task<ProductVm> GetProduct(int id);
+
+        Task<IList<ProductVm>> GetProductByCategory(int id);
     }
 }

@@ -3,6 +3,8 @@
 <ul class="submenu">
     @foreach (var category in Model)
     {
-        <li><a href="#">@category.name_category</a></li>
+        <li><a asp-action="ShowByCategory" asp-controller="Product" asp-route-id="@category.id_category">
+    @category.name_category
+</a></li>
     }
 </ul>

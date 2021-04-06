@@ -78,6 +78,24 @@ namespace PikaShop.Controllers
             return productVm;
         }
 
+        [HttpGet("category/{CategoryId}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<ProductVm>>> GetProductByCategory(int CategoryId)
+        {
+            return await _context.Products.Include(p => p.Brand).Include(p => p.Category).Where(p => p.id_category == CategoryId)
+                .Select(x => new ProductVm
+                {
+                    id_product = x.id_product,
+                    name_product = x.name_product,
+                    ThumbnailImageUrl = x.image,
+                    description = x.description,
+                    name_brand = x.Brand.Name,
+                    name_category = x.Category.name_category,
+                })
+                .ToListAsync();
+        }
+
+
         [HttpPut("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> PutProduct(int id, ProductCreateRequest productCreateRequest)

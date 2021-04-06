@@ -76,12 +76,12 @@
                                         <li>
                                             <a href="#">Brands <i class="ti-angle-down"></i></a>
                                             @*<ul class="submenu">
-                                                <li><a href="#">Card</a></li>
-                                                <li><a href="#">Game</a></li>
-                                            </ul>*@
+                                                    <li><a href="#">Card</a></li>
+                                                    <li><a href="#">Game</a></li>
+                                                </ul>*@
                                             @await Component.InvokeAsync("BrandMenu")
                                         </li>
-                                         <li>
+                                        <li>
                                             <a href="#">Categories <i class="ti-angle-down"></i></a>
                                             @await Component.InvokeAsync("CategoryMenu")
                                         </li>
@@ -127,10 +127,9 @@
                                 Category
                             </h3>
                             <ul class="links">
-                                <li><a href="#">Card</a></li>
-                                <li><a href="#">Game</a></li>
-                                <li><a href="#">Figure</a></li>
-                                <li><a href="#">Soft Toy</a></li>
+                                <li><a asp-action="ShowByCategory" asp-controller="Product" asp-route-id="1">Card</a></li>
+                                <li><a asp-action="ShowByCategory" asp-controller="Product" asp-route-id="2">Game</a></li>
+                                <li><a asp-action="ShowByCategory" asp-controller="Product" asp-route-id="3">Figure</a></li>
                             </ul>
                         </div>
                     </div>
@@ -140,13 +139,11 @@
                                 Quick Link
                             </h3>
                             <ul class="links">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Shop</a></li>
-                                <li><a href="#">Login</a></li>
-                                <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                                </li>
+                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li><a asp-controller="Home" asp-action="About">About Us</a></li>
+                                <li><a asp-controller="Account" asp-action="SignIn">Login</a></li>
+                                <li><a>Shop</a></li>
+                                <li></li>
                             </ul>
                         </div>
                     </div>

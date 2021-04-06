@@ -73,19 +73,16 @@
                                         <li>
                                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                         </li>
+                                        <li><a asp-controller="Home" asp-action="Shop">Shop</a></li>
                                         <li>
                                             <a href="#">Brands <i class="ti-angle-down"></i></a>
-                                            @*<ul class="submenu">
-                                                    <li><a href="#">Card</a></li>
-                                                    <li><a href="#">Game</a></li>
-                                                </ul>*@
                                             @await Component.InvokeAsync("BrandMenu")
                                         </li>
                                         <li>
                                             <a href="#">Categories <i class="ti-angle-down"></i></a>
                                             @await Component.InvokeAsync("CategoryMenu")
                                         </li>
-                                        <li><a href="contact.html">About</a></li>
+                                        <li><a asp-controller="Home" asp-action="About">About</a></li>
                                         <partial name="_LoginPartial" />
                                     </ul>
                                 </nav>
@@ -141,8 +138,8 @@
                             <ul class="links">
                                 <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                                 <li><a asp-controller="Home" asp-action="About">About Us</a></li>
+                                <li><a asp-controller="Home" asp-action="Shop">Shop</a></li>
                                 <li><a asp-controller="Account" asp-action="SignIn">Login</a></li>
-                                <li><a>Shop</a></li>
                                 <li></li>
                             </ul>
                         </div>

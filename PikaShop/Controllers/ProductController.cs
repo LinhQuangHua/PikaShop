@@ -95,6 +95,23 @@ namespace PikaShop.Controllers
                 .ToListAsync();
         }
 
+        [HttpGet("brand/{brandId}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<ProductVm>>> GetProductByBrand(int brandId)
+        {
+            return await _context.Products.Include(p => p.Brand).Include(p => p.Category).Where(p => p.id_brand == brandId)
+                .Select(x => new ProductVm
+                {
+                    id_product = x.id_product,
+                    name_product = x.name_product,
+                    ThumbnailImageUrl = x.image,
+                    description = x.description,
+                    name_brand = x.Brand.Name,
+                    name_category = x.Category.name_category,
+                })
+                .ToListAsync();
+        }
+
 
         [HttpPut("{id}")]
         [Authorize(Roles = "admin")]

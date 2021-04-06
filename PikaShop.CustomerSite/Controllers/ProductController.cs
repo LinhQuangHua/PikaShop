@@ -26,5 +26,11 @@ namespace PikaShop.CustomerSite.Controllers
             var result = await _productApiClient.GetProductByCategory(id);
             return View(result);
         }
+
+        public async Task<IActionResult> ShowByBrand(int id)
+        {
+            var result = await _productApiClient.GetProductByBrand(id);
+            return View(result);
+        }
     }
 }

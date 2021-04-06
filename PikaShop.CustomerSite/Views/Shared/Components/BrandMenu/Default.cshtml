@@ -3,5 +3,5 @@
 <ul class="submenu">
     @foreach (var brand in Model)
     {
-<li><a href="#">@brand.Name</a></li>}
+<li><a asp-action="ShowByBrand" asp-controller="Product" asp-route-id="@brand.Id">@brand.Name</a></li>}
 </ul>

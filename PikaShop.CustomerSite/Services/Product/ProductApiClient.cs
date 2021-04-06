@@ -37,5 +37,12 @@ namespace PikaShop.CustomerSite.Services
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<IList<ProductVm>>();
         }
+
+        public async Task<IList<ProductVm>> GetProductByBrand(int id)
+        {
+            var response = await _client.GetAsync("https://localhost:44317/api/product/brand/" + id);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<IList<ProductVm>>();
+        }
     }
 }

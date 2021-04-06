@@ -1325,10 +1325,10 @@ h3 {
 }
 
 /* line 1, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_slider.scss */
-.slider_bg_1 {
+/*.slider_bg_1 {
   background-image: url(../img/banner/banner.png);
 }
-
+*/
 /* line 4, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_slider.scss */
 .slider_area {
   position: relative;
@@ -1864,9 +1864,9 @@ h3 {
 }
 
 /* line 1, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_service.scss */
-.service_icon_bg_1 {
+/*.service_icon_bg_1 {
   background-image: url(../img/service/service_icon_bg_1.png);
-}
+}*/
 
 /* line 4, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_service.scss */
 .service_area {
@@ -1941,8 +1941,8 @@ h3 {
 
 /* line 1, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_team.scss */
 .team_area {
-  padding-bottom: 200px;
-  padding-top: 125px;
+  padding-bottom: 50px;
+/*  padding-top: 0px;*/
 }
 
 @media (max-width: 767px) {
@@ -1985,7 +1985,7 @@ h3 {
 }
 
 /* line 23, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_team.scss */
-.team_area .single_team .member_name .mamber_inner {
+.team_area_a .single_team .member_name .mamber_inner {
   border-radius: 5px;
   display: inline-block;
   padding: 16px 40px 11px 40px;
@@ -1994,7 +1994,7 @@ h3 {
 }
 
 /* line 29, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_team.scss */
-.team_area .single_team .member_name .mamber_inner h4 {
+.team_area_a .single_team .member_name .mamber_inner h4 {
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
   color: #222222;

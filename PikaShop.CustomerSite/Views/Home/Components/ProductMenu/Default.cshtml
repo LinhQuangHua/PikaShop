@@ -13,9 +13,9 @@
         text-align: center;
     }
 
-    .card-title:hover {
-        color: red;
-    }
+        .card-title:hover {
+            color: red;
+        }
 
     img {
         padding: 1rem;
@@ -36,10 +36,52 @@
     }
 </style>
 <div class="section_title text-center">
-    <h3>New Game!</h3>
+    <h3>New Pokemon's Games 2021!</h3>
 </div>
 <div class="row">
-    @foreach (var product in Model)
+    @foreach (var product in Model.Where(p => p.name_category == "Game"))
+    {
+<a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
+    <div class="col">
+        <div class="card">
+            <img src="~/user-content/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
+            <div class="card-body">
+                <h5 class="card-title">@product.name_product</h5>
+                <p class="card-description">@product.description</p>
+                <p class="price">Price: $@product.price</p>
+                <a href="#" class="btn btn-primary">Buy Now!</a>
+            </div>
+        </div>
+    </div>
+</a>}
+</div>
+
+<div class="section_title text-center">
+    <h3>New Pokemon's Cards GX 2021!</h3>
+</div>
+<div class="row">
+    @foreach (var product in Model.Where(p => p.name_category == "Card"))
+    {
+<a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
+    <div class="col">
+        <div class="card">
+            <img src="~/user-content/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
+            <div class="card-body">
+                <h5 class="card-title">@product.name_product</h5>
+                <p class="card-description">@product.description</p>
+                <p class="price">Price: $@product.price</p>
+                <a href="#" class="btn btn-primary">Buy Now!</a>
+            </div>
+        </div>
+    </div>
+</a>}
+</div>
+
+<div class="section_title text-center">
+    <h3>New Pokemon's Shodo Figure 2021!</h3>
+</div>
+<div class="row">
+    @foreach (var product in Model.Where(p => p.name_category == "Figure"))
     {
 <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
     <div class="col">

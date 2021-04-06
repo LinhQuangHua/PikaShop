@@ -27,9 +27,9 @@ namespace PikaShop.Shared
 
         public string description { get; set; }
 
-        public int id_category { get; set; }
+        public string name_category { get; set; }
 
-        public int id_brand { get; set; }
+        public string name_brand { get; set; }
 
     }
 }

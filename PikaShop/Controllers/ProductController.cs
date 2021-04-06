@@ -33,7 +33,7 @@ namespace PikaShop.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProducts()
         {
-            return await _context.Products
+            return await _context.Products.Include(p => p.Brand).Include(p => p.Category)
                 .Select(x => new ProductVm {
                     id_product = x.id_product,
                     name_product = x.name_product,
@@ -43,8 +43,8 @@ namespace PikaShop.Controllers
                     weight = x.weight,
                     description = x.description,
                     quantity = x.quantity,
-                    id_brand = x.id_brand,
-                    id_category = x.id_category
+                    name_brand = x.Brand.Name,
+                    name_category = x.Category.name_category,
                 })
                 .ToListAsync();
         }
@@ -53,7 +53,7 @@ namespace PikaShop.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<ProductVm>> GetProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.Include(p => p.Brand).Include(p => p.Category).Where(p => p.id_product == id).FirstOrDefaultAsync();
 
             if (product == null)
             {
@@ -69,8 +69,8 @@ namespace PikaShop.Controllers
                 weight = product.weight,
                 description = product.description,
                 quantity = product.quantity,
-                id_brand = product.id_brand,
-                id_category = product.id_category
+                name_brand = product.Brand.Name,
+                name_category = product.Category.name_category
             };
 
             productVm.ThumbnailImageUrl = _storageService.GetFileUrl(product.image);

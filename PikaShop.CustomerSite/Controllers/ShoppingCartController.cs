@@ -47,9 +47,29 @@ namespace PikaShop.CustomerSite.Controllers
                 lstCartItems.Add(id);
             }
             HttpContext.Session.Set("ssShoppingCart", lstCartItems);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Product", new { id = id });
         }
 
+        public IActionResult BuyNow(int id)
+        {
+            List<int> lstCartItems = HttpContext.Session.Get<List<int>>("ssShoppingCart");
+
+
+            if (lstCartItems is null)
+            {
+                lstCartItems = new List<int>();
+                if (!lstCartItems.Contains(id))
+                {
+                    lstCartItems.Add(id);
+                }
+            }
+            else
+            {
+                lstCartItems.Add(id);
+            }
+            HttpContext.Session.Set("ssShoppingCart", lstCartItems);
+            return RedirectToAction(nameof(Index));
+        }
 
         public IActionResult Remove(int id)
         {

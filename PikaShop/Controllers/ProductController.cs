@@ -87,6 +87,7 @@ namespace PikaShop.Controllers
                 {
                     id_product = x.id_product,
                     name_product = x.name_product,
+                    price = x.price,
                     ThumbnailImageUrl = x.image,
                     description = x.description,
                     name_brand = x.Brand.Name,
@@ -104,6 +105,7 @@ namespace PikaShop.Controllers
                 {
                     id_product = x.id_product,
                     name_product = x.name_product,
+                    price = x.price,
                     ThumbnailImageUrl = x.image,
                     description = x.description,
                     name_brand = x.Brand.Name,
@@ -163,18 +165,6 @@ namespace PikaShop.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProduct", new { id = product.id_product }, null 
-            //new ProductVm { 
-            //    id_product = product.id_product, 
-            //    name_product = product.name_product,
-            //    image = product.image,
-            //    price = product.price,
-            //    height = product.height,
-            //    weight = product.weight,
-            //    description = product.description,
-            //    quantity = product.quantity,
-            //    id_brand = product.id_brand,
-            //    id_category = product.id_category
-            //}
             );
         }
 

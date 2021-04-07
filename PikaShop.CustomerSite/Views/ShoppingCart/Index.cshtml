@@ -4,6 +4,13 @@
     int total = 0;
     int quantity = 0;
 }
+
+<style>
+    table tr .info{
+        text-align: center;
+        padding-top: 40px;
+    }
+</style>
 @if (Model.Count != 0)
 {
     <form method="post">
@@ -41,13 +48,13 @@
                                         <img src="@Config.ApiUrl/@item.ThumbnailImageUrl" style="width:60px; height:90px; margin:auto; display:block; border-radius:5px; border:1px solid #bbb9b9" />
                                     </a>
                                 </td>
-                                <td style="text-align:center;">
+                                <td class="info">
                                     @Html.DisplayFor(x => item.name_product)
                                 </td>
-                                <td style="text-align:center;">
+                                <td class="info">
                                     @Html.DisplayFor(x => item.name_brand)
                                 </td>
-                                <td style="text-align:center;">
+                                <td class="info">
                                     @Html.DisplayFor(x => item.name_category)
                                 </td>
                                 @{
@@ -55,10 +62,10 @@
                                     total += (int)item.price;
                                     quantity++;
                                 }
-                                <td style="text-align:center;">
+                                <td class="info">
                                     $@Html.DisplayFor(x => item.price)
                                 </td>
-                                <td style="text-align:center">
+                                <td class="info">
                                     <a type="submit" class="btn btn-danger" asp-action="remove" asp-route-id="@item.id_product">
                                         <i class="fas fa-trash-alt">Remove</i>
                                     </a>

@@ -9,4 +9,9 @@ namespace PikaShop.CustomerSite
     {
         public static string ApiUrl = "https://localhost:44317";
     }
+
+    public static class ConfigUrl
+    {
+        public static string ApiUrl = "https://localhost:44317/user-content";
+    }
 }

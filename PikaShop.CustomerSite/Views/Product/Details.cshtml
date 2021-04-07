@@ -6,6 +6,8 @@
 
 @{
     ViewData["Title"] = "Details";
+    Random r = new Random();
+    int x = r.Next(1, 4);
 }
 
 <div class="row">
@@ -37,35 +39,34 @@
         <p>
             <span class="item-title">Price: $@Model.price</span>
         </p>
-        @*<a href="#" class="btn btn-success">Add to cart!</a>
-        <a href="#" class="btn btn-primary">Buy Now!</a>*@
-
-    <div class="add-to-box">
-        @{
-            bool isInBag = false;
-            List<int> lstCart = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart");
-            if (lstCart != null && lstCart.Contains(Model.id_product))
-            {
-                isInBag = true;
+        <div class="add-to-box">
+            @{
+                bool isInBag = false;
+                List<int> lstCart = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart");
+                if (lstCart != null && lstCart.Contains(Model.id_product))
+                {
+                    isInBag = true;
+                }
             }
-        }
-        @if (Model.quantity != 0)
-        {
-            @if (isInBag)
+            @if (Model.quantity != 0)
             {
-                <a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@Model.id_product" class="btn btn-success">Remove</a>
+                @if (isInBag)
+                {
+                    <a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@Model.id_product" class="btn btn-success">Remove</a>
+                }
+                else
+                {
+                    <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@Model.id_product" class="btn btn-primary">Add to cart!</a>
+
+                }
             }
             else
             {
-                <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@Model.id_product" class="btn btn-primary">Add to cart!</a>
-
+                <label class="btn btn-danger">Out stock </label>
             }
-        }
-        else
-        {
-            <label class="btn btn-danger">Out stock </label>
-        }
-    </div>
+        </div>
     </div>
     <div class="col-2"></div>
 </div>
+
+@await Component.InvokeAsync("RelatedProduct", new { id = x})

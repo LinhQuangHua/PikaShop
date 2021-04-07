@@ -1,26 +1,34 @@
 ﻿@model IList<PikaShop.Shared.ProductVm>
 @using PikaShop.Shared
-
+@{ 
+    int total = 0;
+    int quantity = 0;
+}
 @if (Model.Count != 0)
 {
     <form method="post">
         <br /><br />
-        <h2 class="text-info">Giỏ hàng của bạn</h2>
+        <h2 class="text-info">My Shopping cart</h2>
         <br />
         <div class="container border border-secondary rounded " style="padding: 15px; border-radius:5px; border:1px solid #bbb9b9">
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-striped rounded" style="width:100%; border-radius:5px; border:1px solid #bbb9b9 ">
                         <tr class="table-info">
-                            <th style="text-align:center; width:20%"></th>
-                            <th style="text-align:center;">
-                                <label>Tên sản phẩm</label>
+                            <th style="text-align:center; width:20%">
+                                <label>Image</label>
                             </th>
                             <th style="text-align:center;">
-                                <label>Loại sản phẩm</label>
+                                <label>Name</label>
                             </th>
                             <th style="text-align:center;">
-                                <label>Giá</label>
+                                <label>Brand</label>
+                            </th>
+                            <th style="text-align:center;">
+                                <label>Category</label>
+                            </th>
+                            <th style="text-align:center;">
+                                <label>Price</label>
                             </th>
                             <th style="text-align:center;"></th>
                         </tr>
@@ -37,23 +45,44 @@
                                     @Html.DisplayFor(x => item.name_product)
                                 </td>
                                 <td style="text-align:center;">
+                                    @Html.DisplayFor(x => item.name_brand)
+                                </td>
+                                <td style="text-align:center;">
                                     @Html.DisplayFor(x => item.name_category)
                                 </td>
+                                @{
+
+                                    total += (int)item.price;
+                                    quantity++;
+                                }
                                 <td style="text-align:center;">
                                     $@Html.DisplayFor(x => item.price)
                                 </td>
                                 <td style="text-align:center">
-                                    <button type="submit" class="btn btn-danger" asp-action="remove" asp-route-id="@item.id_product">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
+                                    <a type="submit" class="btn btn-danger" asp-action="remove" asp-route-id="@item.id_product">
+                                        <i class="fas fa-trash-alt">Remove</i>
+                                    </a>
                                 </td>
                             </tr>
+
                         }
+                            <tr>
+                                <td style="padding-left: 80px">
+                                 @quantity items.
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="padding-left: 55px">
+                                 Total: $@total
+                                </td>
+                                <td></td>
+                            </tr>
                     </table>
                 </div>
             </div>
             <div class="col-md-12 text-center">
-                <button type="submit" id="btnPlaceOrder" class="btn btn-success">Đặt hàng</button>
+                <button type="submit" id="btnPlaceOrder" class="btn btn-success">Check out</button>
             </div>
         </div>
     </form>
@@ -61,7 +90,8 @@
 else
 {
     <img src="~/img/empty-cart.png" style="display: block; margin: auto; width: 50rem;"/>
-    <strong style="text-align: center;">Không có sản phẩm nào trong giỏ hàng. 
-    <br />
-    <a asp-controller="Home" asp-action="Index" style="text-align: center;">Click vào đây để tiếp tục mua sắm!</a></strong>
+    <div class="info" style="text-align: center">
+        <h3>The shopping cart is empty!</h3>
+        <a asp-controller="Home" asp-action="Index">Shopping continue</a>
+    </div>
 } 

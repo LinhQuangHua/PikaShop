@@ -14,5 +14,6 @@ namespace PikaShop.CustomerSite.Services
 
         Task<IList<ProductVm>> GetProductByBrand(int brandId);
 
+        Task<IList<ProductVm>> GetProductByArray(List<int> temp);
     }
 }

@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using PikaShop.CustomerSite.Extentions
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -22,6 +27,32 @@
     <link rel="stylesheet" href="~/css/animate.css">
     <link rel="stylesheet" href="~/css/slicknav.css">
     <link rel="stylesheet" href="~/css/style.css">
+    <style>
+        header .cart {
+            padding: 0 10px;
+            margin-right: 10px;
+            position: relative;
+            margin-top: 2px !important;
+        }
+
+        #cart-product {
+            font-size: 20px;
+        }
+
+        header .cart .quantity {
+            font-size: 12px;
+            position: absolute;
+            top: 30px;
+            right: -15px;
+            background: red;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            padding: 2px 0;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -84,7 +115,33 @@
                                         </li>
                                         <li><a asp-controller="Home" asp-action="About">About</a></li>
                                         <partial name="_LoginPartial" />
-                                        <li><i class="fa fa-shopping-cart" aria-hidden="true"></i></li>
+                                        <li>
+                                            <div class="cart">
+                                             @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
+                                                {
+                                                    <a asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                                        <span>
+                                                            <i id="cart-product" class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                          
+                                                            @{
+                                                                var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart").Count;
+                                                            }
+ 
+                                                            <span class="quantity">@count</span>
+                                                        </span>
+                                                    </a>
+                                                }
+                                                else
+                                                {    
+                                                    <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                                        <span>
+                                                            <i id="cart-product" class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                            <span class="quantity">0</span>
+                                                        </span>
+                                                    </a>
+                                                }
+                                            </div>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>

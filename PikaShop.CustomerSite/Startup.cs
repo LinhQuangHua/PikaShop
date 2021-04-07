@@ -2,18 +2,13 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using PikaShop.CustomerSite.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace PikaShop.CustomerSite
 {
@@ -62,6 +57,14 @@ namespace PikaShop.CustomerSite
             services.AddHttpClient<IProductApiClient, ProductApiClient>();
             services.AddHttpClient<IBrandApiClient, BrandApiClient>();
             services.AddHttpClient<ICategoryApiClient, CategoryApiClient>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+
             services.AddControllersWithViews();
         }
 
@@ -85,6 +88,7 @@ namespace PikaShop.CustomerSite
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

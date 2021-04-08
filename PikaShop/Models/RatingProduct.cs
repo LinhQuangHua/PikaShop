@@ -15,6 +15,8 @@ namespace PikaShop.Models
 
         public string comment { get; set; }
 
+        public int totalStar { get; set; }
+
         [ForeignKey("ApplicationUsers")]
         public string ApplicationUserId { get; set; }
         public virtual User ApplicationUser { get; set; }

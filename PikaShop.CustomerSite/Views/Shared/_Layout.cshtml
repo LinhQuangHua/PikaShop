@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="~/css/animate.css">
     <link rel="stylesheet" href="~/css/slicknav.css">
     <link rel="stylesheet" href="~/css/style.css">
+    <link href="~/css/RateStyleSheet.css" rel="stylesheet" />
     <style>
         header .cart {
             padding: 0 10px;
@@ -113,7 +114,6 @@
                                             <a href="#">Categories <i class="ti-angle-down"></i></a>
                                             @await Component.InvokeAsync("CategoryMenu")
                                         </li>
-                                        <li><a asp-controller="Home" asp-action="About">About</a></li>
                                         <partial name="_LoginPartial" />
                                         <li>
                                             <div class="cart">

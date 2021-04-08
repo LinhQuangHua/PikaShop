@@ -31,5 +31,7 @@ namespace PikaShop.Shared
 
         public string name_brand { get; set; }
 
+        public int id_category { get; set; }
+
     }
 }

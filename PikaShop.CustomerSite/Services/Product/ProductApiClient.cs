@@ -45,6 +45,13 @@ namespace PikaShop.CustomerSite.Services
             return await response.Content.ReadAsAsync<IList<ProductVm>>();
         }
 
+        public async Task<IList<ProductVm>> RelatedProduct(int id, int CategoryId)
+        {
+            var response = await _client.GetAsync("https://localhost:44317/api/product/related/category/"+CategoryId.ToString()+"?id="+id.ToString());
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<IList<ProductVm>>();
+        }
+
         public async Task<IList<ProductVm>> GetProductByArray(List<int> temp)
         {
             List<ProductVm> lstProduct = new List<ProductVm>();

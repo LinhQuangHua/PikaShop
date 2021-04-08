@@ -13,9 +13,9 @@ namespace PikaShop.CustomerSite.ViewComponents
             _productApiClient = productApiClient;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int id)
+        public async Task<IViewComponentResult> InvokeAsync(int id, int CategoryId)
         {
-            var product = await _productApiClient.GetProductByCategory(id);
+            var product = await _productApiClient.RelatedProduct(id, CategoryId);
 
             return View(product);
         }

@@ -44,6 +44,7 @@ namespace PikaShop.Controllers
                     description = x.description,
                     quantity = x.quantity,
                     name_brand = x.Brand.Name,
+                    id_category = x.id_category,
                     name_category = x.Category.name_category,
                 })
                 .ToListAsync();
@@ -70,6 +71,7 @@ namespace PikaShop.Controllers
                 description = product.description,
                 quantity = product.quantity,
                 name_brand = product.Brand.Name,
+                id_category=product.id_category,
                 name_category = product.Category.name_category
             };
 
@@ -82,7 +84,7 @@ namespace PikaShop.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProductByCategory(int CategoryId)
         {
-            return await _context.Products.Include(p => p.Brand).Include(p => p.Category).Where(p => p.id_category == CategoryId)
+           return await _context.Products.Include(p => p.Brand).Include(p => p.Category).Where(p => p.id_category == CategoryId)
                 .Select(x => new ProductVm
                 {
                     id_product = x.id_product,
@@ -92,15 +94,39 @@ namespace PikaShop.Controllers
                     description = x.description,
                     name_brand = x.Brand.Name,
                     name_category = x.Category.name_category,
+                    id_category = x.id_category,
                 })
                 .ToListAsync();
+        }
+
+        [HttpGet("related/category/{CategoryId}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<ProductVm>>> RelatedProduct(int id, int CategoryId)
+        {
+            var products = await _context.Products.Include(p => p.Brand).Include(p => p.Category).Where(p => p.id_category == CategoryId && p.id_product != id)
+                .Select(x => new ProductVm
+                {
+                    id_product = x.id_product,
+                    name_product = x.name_product,
+                    ThumbnailImageUrl = x.image,
+                    price = x.price,
+                    height = x.height,
+                    weight = x.weight,
+                    description = x.description,
+                    quantity = x.quantity,
+                    name_brand = x.Brand.Name,
+                    id_category=x.Category.id_category,
+                    name_category = x.Category.name_category,
+                })
+                .ToListAsync();
+            return products;
         }
 
         [HttpGet("brand/{brandId}")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProductByBrand(int brandId)
         {
-            return await _context.Products.Include(p => p.Brand).Include(p => p.Category).Where(p => p.id_brand == brandId)
+            return await _context.Products.Where(p => p.id_brand == brandId).Include(p => p.Brand).Include(p => p.Category)
                 .Select(x => new ProductVm
                 {
                     id_product = x.id_product,
@@ -110,8 +136,9 @@ namespace PikaShop.Controllers
                     description = x.description,
                     name_brand = x.Brand.Name,
                     name_category = x.Category.name_category,
+                    id_category = x.id_category,
                 })
-                .ToListAsync();
+                .ToListAsync();          
         }
 
 

@@ -70,6 +70,8 @@
 {
     @await Component.InvokeAsync("RatingProduct", new { ProductId = Model.id_product })
 }
+
+@await Component.InvokeAsync("ShowRatingByProduct", new { id = Model.id_product })
 @*@if (User.Identity.IsAuthenticated)
     {
         <hr />

@@ -32,5 +32,11 @@ namespace PikaShop.CustomerSite.Controllers
             await _ratingClient.PostRating(userToken, rating);
             return RedirectToAction("Details", "Product", new { id = rating.id_product });
         }
+
+        public async Task<IActionResult> ShowRatingByProduct(int id)
+        {
+            var result = await _ratingClient.GetRatingByProductId(id);
+            return View(result);
+        }
     }
 }

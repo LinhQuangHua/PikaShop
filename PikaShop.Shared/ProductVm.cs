@@ -33,5 +33,6 @@ namespace PikaShop.Shared
 
         public int id_category { get; set; }
 
+
     }
 }

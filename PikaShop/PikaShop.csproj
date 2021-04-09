@@ -18,6 +18,7 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\PikaShop.CustomerSite\PikaShop.CustomerSite.csproj" />
 		<ProjectReference Include="..\PikaShop.Shared\PikaShop.Shared.csproj" />
 	</ItemGroup>
 

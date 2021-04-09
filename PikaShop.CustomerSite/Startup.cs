@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using PikaShop.CustomerSite.Services;
+using PikaShop.CustomerSite.Services.RatingProduct;
 using System;
 
 namespace PikaShop.CustomerSite
@@ -58,6 +59,8 @@ namespace PikaShop.CustomerSite
             services.AddHttpClient<IBrandApiClient, BrandApiClient>();
             services.AddHttpClient<ICategoryApiClient, CategoryApiClient>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpClient<IRatingService, RatingService>();
+
 
             services.AddDistributedMemoryCache();
             services.AddSession(options =>

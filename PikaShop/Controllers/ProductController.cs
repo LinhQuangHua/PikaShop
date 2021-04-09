@@ -5,12 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using PikaShop.Data;
 using PikaShop.Models;
 using PikaShop.Services;
+using PikaShop.Services.Repositories;
 using PikaShop.Shared;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 
@@ -23,10 +25,12 @@ namespace PikaShop.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IStorageService _storageService;
-        public ProductController(ApplicationDbContext context, IStorageService storageService)
+        private readonly IRateRepository _rateRepository;
+        public ProductController(ApplicationDbContext context, IStorageService storageService, IRateRepository rateRepository)
         {
             _context = context;
             _storageService = storageService;
+            _rateRepository = rateRepository;
         }
 
         [HttpGet]
@@ -217,6 +221,17 @@ namespace PikaShop.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpPost]
+        [Route("rate")]
+        [Authorize]
+        public async Task<IActionResult> RateProduct(int productId, int totalStar)
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            string userId = claimsIdentity.FindFirst("sub").Value;
+            RatingProduct rate = await _rateRepository.CreateAsync(productId, userId, totalStar);
+            return Ok(rate);
         }
     }
 }

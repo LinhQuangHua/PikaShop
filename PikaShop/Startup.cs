@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using PikaShop.Data;
 using PikaShop.IdentityServer;
 using PikaShop.Services;
+using PikaShop.Services.Repositories;
 using System;
 using System.Collections.Generic;
 
@@ -69,6 +70,7 @@ namespace PikaShop
                 });
             });
 
+            services.AddTransient<IRateRepository, RateRepository>();
             services.AddControllersWithViews();
 
             services.AddSwaggerGen(c =>

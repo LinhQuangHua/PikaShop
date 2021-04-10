@@ -89,8 +89,18 @@ namespace PikaShop.Controllers
                 id_product = request.id_product
             };
 
+
+            try
+            {
             _context.RatingProducts.Add(rating);
             await _context.SaveChangesAsync();
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
 
             var ratingVm = new RatingVm()
             {

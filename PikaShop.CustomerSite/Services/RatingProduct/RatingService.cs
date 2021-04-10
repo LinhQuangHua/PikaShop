@@ -4,6 +4,7 @@ using PikaShop.Shared;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,10 +42,9 @@ namespace PikaShop.CustomerSite.Services.RatingProduct
 
         public async Task<RatingVm> PostRating(string userToken,RatingCreateRequest request)
         {
-            HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
             // 2 dòng dưới dùng khi muốn chèn access token vào httpclient đề lấy api đã dc bảo mật
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", userToken);
-            var response = await _client.PostAsync("https://localhost:44317/api/rating", httpContent);
+            var response = await _client.PostAsync("https://localhost:44317/api/rating/", JsonContent.Create(request));
 
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<RatingVm>();

@@ -21,11 +21,5 @@ namespace PikaShop.Models
         public string ApplicationUserId { get; set; }
         public virtual User ApplicationUser { get; set; }
 
-        [ForeignKey("Delivery")]
-        public int id_delivery { get; set; }
-
-        public Delivery Delivery { get; set; }
-
-
     }
 }

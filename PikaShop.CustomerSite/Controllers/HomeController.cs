@@ -30,8 +30,9 @@ namespace PikaShop.CustomerSite.Controllers
             return View();
         }
 
-        public IActionResult Shop()
+        public IActionResult Shop(int page = 1)
         {
+            ViewBag.Page = page;
             return View();
         }
 

@@ -1,4 +1,7 @@
-﻿@model IList<PikaShop.Shared.ProductVm>
+﻿@model IPagedList<PikaShop.Shared.ProductVm>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
 <style>
     a.btn.btn-primary {
         display: block;
@@ -42,18 +45,34 @@
 <div class="row">
     @foreach (var product in Model)
     {
-<a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
-    <div class="col">
-        <div class="card">
-            <img src="@ConfigUrl.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
-            <div class="card-body">
-                <h5 class="card-title">@product.name_product</h5>
-                <p class="card-description">@product.description</p>
-                <p class="price">Price: $@product.price</p>
-                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.id_product">Buy Now!</a>
+        <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
+            <div class="col">
+                <div class="card">
+                    <img src="@ConfigUrl.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
+                    <div class="card-body">
+                        <h5 class="card-title">@product.name_product</h5>
+                        <p class="card-description">@product.description</p>
+                        <p class="price">Price: $@product.price</p>
+                        <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.id_product">Buy Now!</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</a>}
+        </a>}
 </div>
 
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Shop", new { page = page }),
+        new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+        {
+            DisplayItemSliceAndTotal = true,
+            ContainerDivClasses = new[] { "navigation" },
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" },
+        })
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('ul.pagination > li.disabled > a').addClass('page-link');
+        });
+    </script>
+}

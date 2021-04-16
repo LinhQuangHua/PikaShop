@@ -14,6 +14,7 @@ using PikaShop.IdentityServer;
 using PikaShop.Models;
 using PikaShop.Services;
 using PikaShop.Services.Repositories;
+using RookieShop.Backend.IdentityServer;
 using System;
 using System.Collections.Generic;
 
@@ -56,6 +57,7 @@ namespace PikaShop
                .AddInMemoryApiScopes(IdentityServerConfig.ApiScopes)
                .AddInMemoryClients(IdentityServerConfig.Clients)
                .AddAspNetIdentity<IdentityUser>()
+               .AddProfileService<CustomProfileService>()
                .AddDeveloperSigningCredential(); // not recommended for production - you need to store your key material somewhere secure
 
             services.AddAuthentication()

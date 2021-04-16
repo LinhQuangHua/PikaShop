@@ -29,6 +29,7 @@ namespace PikaShop.Controllers
         public async Task<ActionResult<IEnumerable<UserVm>>> GetUsers()
         {
             return await _context.Users
+                .Where(x => x.Email != "admin@gmail.com")
                 .Select(x => new UserVm {
                     id_user = x.Id, 
                     mail_user = x.Email,

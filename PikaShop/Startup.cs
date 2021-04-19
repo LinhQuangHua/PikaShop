@@ -76,7 +76,9 @@ namespace PikaShop
             });
 
             services.AddTransient<IRateRepository, RateRepository>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
 
             services.AddSwaggerGen(c =>
             {
@@ -125,6 +127,12 @@ namespace PikaShop
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCors(o =>
+            {
+                o.AllowAnyMethod();
+                o.AllowAnyOrigin();
+            });
 
             app.UseIdentityServer();
             app.UseAuthorization();

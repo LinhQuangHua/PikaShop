@@ -1,7 +1,11 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "../components/Home";
 import About from "../components/About";
+import User from "../components/user/User";
+import Product from "../components/product/Product";
+import Brand from "../components/brand/Brand";
+import Category from "../components/category/Category";
 import NavMenu from "./NavMenu";
 import Auth from "./Auth";
 
@@ -10,11 +14,12 @@ const App = () => {
     <BrowserRouter basename={"/"}>
       <NavMenu />
       <div className="container">
-        <div>
-          <Link to="/about">About</Link>
-        </div>
         <Switch>
           <Route path="/authentication/:action" component={Auth} />
+          <Route path="/category" component={Category} />
+          <Route path="/brand" component={Brand} />
+          <Route path="/product" component={Product} />
+          <Route path="/user" component={User} />
           <Route path="/about" component={About} />
           <Route path="/" component={Home} />
         </Switch>

@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const About = () => {
+const Product = () => {
   return (
     <>
-      <h3>About</h3>
+      <h3>List Products</h3>
       <Link to="/">Return Home</Link>
     </>
   )
 };
 
-export default About;
+export default Product;

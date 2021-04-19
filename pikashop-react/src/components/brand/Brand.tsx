@@ -3,19 +3,6 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import IBrand from "../../interface/IBrand";
 
-
-// const Brand = () => {
-//   return (
-//     <>
-//       <h3>List Brands</h3>
-//       <Link to="/">Return Home</Link>
-//     </>
-//   )
-
-// };
-
-// export default Brand;
-
 export default class Brand extends React.Component {
   state = {
     cates: []

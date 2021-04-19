@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import IBrand from "../../interface/IBrand";
+import { Table, Button } from 'reactstrap';
 
 export default class Brand extends React.Component {
   state = {
@@ -22,10 +23,22 @@ export default class Brand extends React.Component {
     return (
       <>
         <h3>List Brands</h3>
-        <ul>
-          {this.state.cates.map((cates: IBrand) => <li key={cates.Id}>{cates.Name}</li>)}
-        </ul>
-        <Link to="/">Return Home</Link>
+        <Table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          {this.state.cates.map((cates: IBrand) =>
+            <tbody key={cates.Id}>
+              <tr>
+                <th scope="row">{cates.Id}</th>
+                <td>{cates.Name}</td>
+              </tr>
+            </tbody>)}
+        </Table>
+        <Button color="warning"><Link to="/">Return Home</Link></Button>
       </>
 
     )

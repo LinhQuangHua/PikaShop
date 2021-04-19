@@ -1,13 +1,36 @@
-import React from "react";
+import React from 'react';
+
+import axios from 'axios';
+import IPerson from '../interface/IPerson'
 import { Link } from "react-router-dom";
 
-const About = () => {
-  return (
-    <>
-      <h3>About</h3>
-      <Link to="/">Return Home</Link>
-    </>
-  )
-};
+// export interface IPerson{
+//   username:string
+// }
+export default class About extends React.Component {
+  state = {
+    persons: []
+  }
 
-export default About;
+  componentDidMount() {
+    axios.get(`https://jsonplaceholder.typicode.com/users`)
+      .then(res => {
+        const persons = res.data;
+        this.setState({ persons });
+      })
+      .catch(error => console.log(error));
+  }
+
+  render() {
+    return (
+      <>
+        <h3>List User</h3>
+        <ul>
+          {this.state.persons.map((person: IPerson) => <li>{person.username}</li>)}
+        </ul>
+        <Link to="/">Return Home</Link>
+      </>
+
+    )
+  }
+}

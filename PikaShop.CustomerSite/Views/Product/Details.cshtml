@@ -70,7 +70,11 @@
 {
     @await Component.InvokeAsync("RatingProduct", new { ProductId = Model.id_product })
 }
-<hr/>
+<hr />
 @await Component.InvokeAsync("ShowRatingByProduct", new { id = Model.id_product })
+<br />
+<hr />
+@await Component.InvokeAsync("RelatedProduct", new { id = Model.id_product, CategoryId = Model.id_category })
+<br />
 
 

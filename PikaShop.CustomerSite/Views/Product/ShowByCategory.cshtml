@@ -35,24 +35,31 @@
         margin-top: 70px;
         margin-bottom: 30px;
     }
+    .space
+    {
+        margin-bottom: 150px
+    }
 </style>
 <div class="section_title text-center">
     <h3>List product!</h3>
 </div>
-<div class="row">
-    @foreach (var product in Model)
-    {
-<a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
-    <div class="col">
-        <div class="card">
-            <img src="@ConfigUrl.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
-            <div class="card-body">
-                <h5 class="card-title">@product.name_product</h5>
-                <p class="card-description">@product.description</p>
-                <p class="price">Price: $@product.price</p>
-                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.id_product">Buy Now!</a>
-            </div>
-        </div>
+<div class="space">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
+                <div class="col">
+                    <div class="card">
+                        <img src="@ConfigUrl.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
+                        <div class="card-body">
+                            <h5 class="card-title">@product.name_product</h5>
+                            <p class="card-description">@product.description</p>
+                            <p class="price">Price: $@product.price</p>
+                            <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.id_product">Buy Now!</a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+          }
     </div>
-</a>}
 </div>

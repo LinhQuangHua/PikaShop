@@ -8,14 +8,15 @@ namespace PikaShop.CustomerSite.Services
     public class CategoryApiClient : ICategoryApiClient
     {
         private readonly HttpClient _client;
-        public CategoryApiClient(HttpClient client)
+        public CategoryApiClient(IHttpClientFactory httpClientFactory)
         {
-            _client = client;
+            _client = httpClientFactory.CreateClient("host");
+
         }
 
         public async Task<IList<CategoryVm>> GetCategories()
         {
-            var response = await _client.GetAsync("https://localhost:44317/api/category");
+            var response = await _client.GetAsync("api/category");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<IList<CategoryVm>>();
         }

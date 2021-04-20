@@ -7,11 +7,11 @@ namespace PikaShop.CustomerSite
 {
     public static class Config
     {
-        public static string ApiUrl = "https://localhost:44317";
+        public static string ApiUrl = "";
     }
 
     public static class ConfigUrl
     {
-        public static string ApiUrl = "https://localhost:44317/user-content";
+        public static string ApiUrl = "";
     }
 }

@@ -25,6 +25,12 @@ namespace PikaShop.CustomerSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var domain = Configuration.GetSection("Domain");
+            var hostUri = domain["Default"];
+
+            Config.ApiUrl = hostUri;
+            ConfigUrl.ApiUrl = hostUri + domain["ImageUrl"];
+
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
@@ -33,7 +39,7 @@ namespace PikaShop.CustomerSite
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:44317";
+                    options.Authority = hostUri;
                     options.RequireHttpsMetadata = false;
                     options.GetClaimsFromUserInfoEndpoint = true;
 
@@ -54,12 +60,15 @@ namespace PikaShop.CustomerSite
                     };
                 });
 
-            services.AddHttpClient();
-            services.AddHttpClient<IProductApiClient, ProductApiClient>();
-            services.AddHttpClient<IBrandApiClient, BrandApiClient>();
-            services.AddHttpClient<ICategoryApiClient, CategoryApiClient>();
+            services.AddHttpClient("host", (configureClient) =>
+            {
+                configureClient.BaseAddress = new Uri(hostUri);
+            });
+            services.AddScoped<IProductApiClient, ProductApiClient>();
+            services.AddScoped<IBrandApiClient, BrandApiClient>();
+            services.AddScoped<ICategoryApiClient, CategoryApiClient>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddHttpClient<IRatingService, RatingService>();
+            services.AddScoped<IRatingService, RatingService>();
 
 
             services.AddDistributedMemoryCache();
@@ -81,7 +90,6 @@ namespace PikaShop.CustomerSite
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();

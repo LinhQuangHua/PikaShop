@@ -19,10 +19,18 @@ namespace PikaShop.IdentityServer
                   new ApiScope("pikashop.api", "PikaShop Shop API")
              };
 
-        public static IEnumerable<Client> Clients =>
-            new List<Client>
+        public static IEnumerable<Client> Clients(Dictionary<string, string> clientUrls) =>
+            new[]
             {
-                // machine to machine client
+                new Client
+                {
+                    ClientId = "ro.client",
+                    ClientName = "Resource Owner Client",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    AllowedScopes = { "api.myshop" }
+                },
+
                 new Client
                 {
                     ClientId = "client",
@@ -33,7 +41,6 @@ namespace PikaShop.IdentityServer
                     AllowedScopes = { "pikashop.api" }
                 },
 
-                // interactive ASP.NET Core MVC client
                 new Client
                 {
                     ClientId = "mvc",
@@ -41,9 +48,9 @@ namespace PikaShop.IdentityServer
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:44357/signin-oidc" },
+                    RedirectUris = { $"{clientUrls["Mvc"]}/signin-oidc" },
 
-                    PostLogoutRedirectUris = { "https://localhost:44357/signout-callback-oidc" },
+                    PostLogoutRedirectUris = { $"{clientUrls["Mvc"]}/signout-callback-oidc" },
 
                     AllowedScopes = new List<string>
                     {
@@ -62,9 +69,10 @@ namespace PikaShop.IdentityServer
                     RequireConsent = false,
                     RequirePkce = true,
 
-                    RedirectUris =           { $"https://localhost:44317/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"https://localhost:44317/swagger/oauth2-redirect.html" },
-                    AllowedCorsOrigins =     { $"https://localhost:44317" },
+                    RedirectUris =           { $"{clientUrls["Swagger"]}/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { $"{clientUrls["Swagger"]}/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins =     { $"{clientUrls["Swagger"]}" },
+
 
                     AllowedScopes = new List<string>
                     {
@@ -88,19 +96,19 @@ namespace PikaShop.IdentityServer
 
                     RedirectUris = new List<string>
                     {
-                        $"{"http://localhost:3000"}/authentication/login-callback",
-                        $"{"http://localhost:3000"}/silent-renew.html",
-                        $"{"http://localhost:3000"}"
+                        $"{clientUrls["React"]}/authentication/login-callback",
+                        $"{clientUrls["React"]}/silent-renew.html",
+                        $"{clientUrls["React"]}"
                     },
                     PostLogoutRedirectUris = new List<string>
                     {
-                        $"{"http://localhost:3000"}/unauthorized",
-                        $"{"http://localhost:3000"}/authentication/logout-callback",
-                        $"{"http://localhost:3000"}"
+                        $"{clientUrls["React"]}/unauthorized",
+                        $"{clientUrls["React"]}/authentication/logout-callback",
+                        $"{clientUrls["React"]}"
                     },
                     AllowedCorsOrigins = new List<string>
                     {
-                        $"{"http://localhost:3000"}"
+                        $"{clientUrls["React"]}"
                     },
 
                     AllowedScopes = new List<string>

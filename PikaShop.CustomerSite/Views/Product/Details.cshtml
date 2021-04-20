@@ -70,28 +70,7 @@
 {
     @await Component.InvokeAsync("RatingProduct", new { ProductId = Model.id_product })
 }
-
+<hr/>
 @await Component.InvokeAsync("ShowRatingByProduct", new { id = Model.id_product })
-@*@if (User.Identity.IsAuthenticated)
-    {
-        <hr />
-        <div class="p-5 border rounded" style="text-align: center !important;">
-            <h3>Rating product</h3>
-            @{ using (Html.BeginForm("SetRating", "Ratings"))
-                {
-                    @Html.HiddenFor(x => x.id_product)
-                    <span class="star-rating star-5">
-                        <input type="radio" id="Rank" name="Rank" value="1"><i></i>
-                        <input type="radio" id="Rank" name="Rank" value="2"><i></i>
-                        <input type="radio" id="Rank" name="Rank" value="3"><i></i>
-                        <input type="radio" id="Rank" name="Rank" value="4"><i></i>
-                        <input type="radio" id="Rank" name="Rank" value="5"><i></i>
-                    </span>
-                    <br />
-                    <input class="btn btn-success" type="submit" value="Rating" />
-                }
-            }
-        </div>
 
-    }*@
 

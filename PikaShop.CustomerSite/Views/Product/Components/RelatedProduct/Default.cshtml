@@ -44,7 +44,7 @@
 <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
     <div class="col">
         <div class="card">
-            <img src="@ConfigUrl.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
+            <img src="@Config.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
             <div class="card-body">
                 <h5 class="card-title">@product.name_product</h5>
                 <p class="card-description">@product.description</p>

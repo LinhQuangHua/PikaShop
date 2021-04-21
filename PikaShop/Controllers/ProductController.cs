@@ -41,7 +41,7 @@ namespace PikaShop.Controllers
                 .Select(x => new ProductVm {
                     id_product = x.id_product,
                     name_product = x.name_product,
-                    ThumbnailImageUrl = x.image,
+                    ThumbnailImageUrl = _storageService.GetFileUrl(x.image),
                     price = x.price,
                     height = x.height,
                     weight = x.weight,
@@ -94,7 +94,7 @@ namespace PikaShop.Controllers
                     id_product = x.id_product,
                     name_product = x.name_product,
                     price = x.price,
-                    ThumbnailImageUrl = x.image,
+                    ThumbnailImageUrl = _storageService.GetFileUrl(x.image),
                     description = x.description,
                     name_brand = x.Brand.Name,
                     name_category = x.Category.name_category,
@@ -112,7 +112,7 @@ namespace PikaShop.Controllers
                 {
                     id_product = x.id_product,
                     name_product = x.name_product,
-                    ThumbnailImageUrl = x.image,
+                    ThumbnailImageUrl = _storageService.GetFileUrl(x.image),
                     price = x.price,
                     height = x.height,
                     weight = x.weight,
@@ -136,7 +136,7 @@ namespace PikaShop.Controllers
                     id_product = x.id_product,
                     name_product = x.name_product,
                     price = x.price,
-                    ThumbnailImageUrl = x.image,
+                    ThumbnailImageUrl = _storageService.GetFileUrl(x.image),
                     description = x.description,
                     name_brand = x.Brand.Name,
                     name_category = x.Category.name_category,
@@ -158,7 +158,7 @@ namespace PikaShop.Controllers
             }
 
             product.name_product = productCreateRequest.name_product;
-            product.image = productCreateRequest.image;
+            product.image = productCreateRequest.ThumbnailImage.ToString();
             product.price = productCreateRequest.price;
             product.height = productCreateRequest.height;
             product.weight = productCreateRequest.weight;

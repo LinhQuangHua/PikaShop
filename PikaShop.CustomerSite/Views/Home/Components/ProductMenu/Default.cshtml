@@ -39,12 +39,12 @@
     <h3>New Pokemon's Games 2021!</h3>
 </div>
 <div class="row">
-    @foreach (var product in Model.Where(p => p.name_category == "Game"))
+    @foreach (var product in Model.Where(p => p.name_category == "Game").Take(4))
     {
 <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
     <div class="col">
         <div class="card">
-            <img src="@ConfigUrl.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
+            <img src="@Config.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
             <div class="card-body">
                 <h5 class="card-title">@product.name_product</h5>
                 <p class="card-description">@product.description</p>
@@ -60,12 +60,12 @@
     <h3>New Pokemon's Cards GX 2021!</h3>
 </div>
 <div class="row">
-    @foreach (var product in Model.Where(p => p.name_category == "Card"))
+    @foreach (var product in Model.Where(p => p.name_category == "Card").Take(4))
     {
 <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
     <div class="col">
         <div class="card">
-            <img src="@ConfigUrl.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
+            <img src="@Config.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
             <div class="card-body">
                 <h5 class="card-title">@product.name_product</h5>
                 <p class="card-description">@product.description</p>
@@ -81,12 +81,12 @@
     <h3>New Pokemon's Shodo Figure 2021!</h3>
 </div>
 <div class="row">
-    @foreach (var product in Model.Where(p => p.name_category == "Figure"))
+    @foreach (var product in Model.Where(p => p.name_category == "Figure").Take(4))
     {
 <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
     <div class="col">
         <div class="card">
-            <img src="@ConfigUrl.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
+            <img src="@Config.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
             <div class="card-body">
                 <h5 class="card-title">@product.name_product</h5>
                 <p class="card-description">@product.description</p>

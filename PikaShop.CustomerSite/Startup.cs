@@ -29,7 +29,6 @@ namespace PikaShop.CustomerSite
             var hostUri = domain["Default"];
 
             Config.ApiUrl = hostUri;
-            ConfigUrl.ApiUrl = hostUri + domain["ImageUrl"];
 
             services.AddAuthentication(options =>
             {

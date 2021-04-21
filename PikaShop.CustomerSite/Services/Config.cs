@@ -9,9 +9,4 @@ namespace PikaShop.CustomerSite
     {
         public static string ApiUrl = "";
     }
-
-    public static class ConfigUrl
-    {
-        public static string ApiUrl = "";
-    }
 }

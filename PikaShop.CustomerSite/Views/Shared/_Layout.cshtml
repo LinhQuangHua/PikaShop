@@ -65,7 +65,7 @@
                         </div>
                         <div class="col-lg-6 col-md-4 ">
                             <div class="social_media_links">
-                                <a href="#">
+                                <a href="https://www.facebook.com/PikaShop.281" style="color: red">
                                     <i class="fa fa-facebook"></i>
                                 </a>
                                 <a href="#">
@@ -154,6 +154,31 @@
         </main>
     </div>
 
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v10.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- Your Plugin chat code -->
+    <div class="fb-customerchat"
+         attribution="page_inbox"
+         page_id="106403414923198">
+    </div>
+
     <footer class="footer">
         <div class="footer_top">
             <div class="container">
@@ -209,7 +234,7 @@
                             <div class="socail_links">
                                 <ul>
                                     <li>
-                                        <a href="#">
+                                        <a href="https://www.facebook.com/PikaShop.281" style="color: red">
                                             <i class="fa fa-facebook"></i>
                                         </a>
                                     </li>
@@ -257,7 +282,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
-        <script src="~/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="~/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import IBrand from "../../interface/IBrand";
 import { Table, Button } from 'reactstrap';
+import PostBrand from "./PostBrand";
 
 export default class Brand extends React.Component {
   state = {
@@ -10,7 +11,7 @@ export default class Brand extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`https://localhost:44317/api/brands`)
+    axios.get(`https://pikashop.azurewebsites.net/api/brands`)
       .then(res => {
         const cates = res.data;
         this.setState({ cates });
@@ -38,6 +39,7 @@ export default class Brand extends React.Component {
               </tr>
             </tbody>)}
         </Table>
+        <PostBrand/>
         <Button color="warning"><Link to="/">Return Home</Link></Button>
       </>
 

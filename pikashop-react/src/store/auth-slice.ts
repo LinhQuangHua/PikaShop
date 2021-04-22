@@ -5,6 +5,7 @@ import authService from "../services/auth-service";
 
 interface IUser {
   name: string;
+  token: string,
 }
 
 interface IAuthState {
@@ -37,7 +38,7 @@ export const loginAsync = (): AppThunk => async (dispatch) => {
 export const completeLoginAsync = (): AppThunk => async (dispatch) => {
   await authService.completeLoginAsync(window.location.href);
   const user = await authService.getUserAsync();
-  dispatch(loginSuccess({ name: user?.profile.name } as IUser));
+  dispatch(loginSuccess({ name: user?.profile.name, token: user?.access_token } as IUser));
 };
 
 export const logoutAsync = (): AppThunk => async (dispatch) => {

@@ -10,7 +10,7 @@ export default class Product extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`https://localhost:44317/api/product`)
+    axios.get(`https://pikashop.azurewebsites.net/api/product`)
       .then(res => {
         const cates = res.data;
         this.setState({ cates });
@@ -43,7 +43,7 @@ export default class Product extends React.Component {
               <tr>
                 <th scope="row">{cates.id_product}</th>
                 <td>{cates.name_product}</td>
-                <td><img src={"https://localhost:44317/user-content/"+cates.ThumbnailImageUrl} style={{ width: 100, height: 100 }} alt="Product_image"></img></td>
+                <td><img src={"https://pikashop.azurewebsites.net/"+cates.ThumbnailImageUrl} style={{ width: 100, height: 100 }} alt="Product_image"></img></td>
                 <td>{cates.price}</td>
                 <td>{cates.height}</td>
                 <td>{cates.weight}</td>

@@ -1,7 +1,7 @@
 import { User, UserManager, UserManagerSettings } from "oidc-client";
 
 const oidcSettings: UserManagerSettings = {
-  authority: "https://localhost:44317",
+  authority: "https://pikashop.azurewebsites.net",
   client_id: "react_code_client",
   redirect_uri: "http://localhost:3000/authentication/login-callback",
   post_logout_redirect_uri: "http://localhost:3000/authentication/logout-callback",

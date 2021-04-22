@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import ICategory from "../../interface/ICategory";
 import { Table,Button } from 'reactstrap';
+import PostCategory from "./PostCategory";
 
 export default class Category extends React.Component {
   state = {
@@ -10,7 +11,7 @@ export default class Category extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`https://localhost:44317/api/category`)
+    axios.get(`https://pikashop.azurewebsites.net/api/category`)
       .then(res => {
         const cates = res.data;
         this.setState({ cates });
@@ -38,6 +39,7 @@ export default class Category extends React.Component {
               </tr>
             </tbody>)}
         </Table>
+        <PostCategory/>
         <Button color="warning"><Link to="/">Return Home</Link></Button>      
       </>
     )

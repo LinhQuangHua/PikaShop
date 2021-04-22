@@ -10,7 +10,7 @@ export default class User extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`https://localhost:44317/api/user`)
+    axios.get(`https://pikashop.azurewebsites.net/api/user`)
       .then(res => {
         const cates = res.data;
         this.setState({ cates });
@@ -46,16 +46,3 @@ export default class User extends React.Component {
     )
   }
 }
-
-
-// const User = () => {
-//   return (
-//     <>
-//       <h3>List Users</h3>
-//       <Link to="/">Return Home</Link>
-//     </>
-//   )
-
-// };
-
-// export default User;

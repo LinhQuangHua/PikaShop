@@ -11,7 +11,12 @@ export default class Category extends React.Component {
     cates: []
   }
 
-  componentDidMount() {
+  constructor(props: any) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+
+  }
+  _fetchCategoryData() {
     axios.get(`https://pikashop.azurewebsites.net/api/category`)
       .then(res => {
         const cates = res.data;
@@ -20,6 +25,29 @@ export default class Category extends React.Component {
       })
       .catch(error => console.log(error));
   }
+
+  componentDidMount() {
+    this._fetchCategoryData();
+  }
+
+  handleDelete(itemId: any) {
+    Delete("category", itemId)
+      .then(res => {
+        this._fetchCategoryData();
+      }).catch(err => {
+        console.log(err);
+      })
+  }
+
+  // componentDidMount() {
+  //   axios.get(`https://pikashop.azurewebsites.net/api/category`)
+  //     .then(res => {
+  //       const cates = res.data;
+  //       this.setState({ cates });
+  //       console.log(cates);
+  //     })
+  //     .catch(error => console.log(error));
+  // }
 
   render() {
     return (
@@ -37,7 +65,7 @@ export default class Category extends React.Component {
               <tr>
                 <th scope="row">{cates.id_category}</th>
                 <td>{cates.name_category}</td>
-                <td><Button color="primary">Edit</Button> <Button color="danger" component={Delete}>Delete</Button></td>
+                <td><Button color="primary">Edit</Button> <Button color="danger" onClick={() => this.handleDelete(cates.id_category)}>Delete</Button></td>
               </tr>
             </tbody>)}
         </Table>

@@ -3,12 +3,19 @@ import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/auth-slice";
+import Edit from "../../services/Edit";
 
-export default () => {
+export default ({ itemEdit }: any) => {
+
     const [nameCate, setName] = useState('');
 
     const user = useSelector(selectUser);
 
+    React.useEffect(() => {
+        console.log(itemEdit)
+        if (itemEdit != null)
+            setName(itemEdit.name_category);
+    }, [itemEdit])
 
     const handleChange = (event: any) => {
         setName(event.target.value);
@@ -16,16 +23,27 @@ export default () => {
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        axios.post(
-            `https://pikashop.azurewebsites.net/api/category`,
-            { name_category: nameCate },
-            {
-                headers: { "Authorization": `Bearer ${user?.token}` },
-            }).then(res => {
-                console.log(res.data);
-            }).catch(err => {
-                console.log(err);
-            })
+        if (itemEdit == null) {
+            axios.post(
+                `https://pikashop.azurewebsites.net/api/category`,
+                { name_category: nameCate },
+                {
+                    headers: { "Authorization": `Bearer ${user?.token}` },
+                }).then(res => {
+                    console.log(res.data);
+                }).catch(err => {
+                    console.log(err);
+                })
+        }
+        else {
+
+            Edit("category", itemEdit.id_category, { name_category: nameCate })
+                .then(res => {
+                    console.log({ name_category: nameCate });
+                }).catch(err => {
+                    console.log(err);
+                })
+        }
     }
 
     return (
@@ -37,7 +55,7 @@ export default () => {
                     <Label for="exampleEmail" className="mr-sm-2">Name</Label>
                     <Input type="text" value={nameCate} placeholder="New category..." onChange={handleChange} />
                 </FormGroup>
-                <Button type="submit">Add</Button>
+                <Button type="submit">{itemEdit ? "Save" : "Add"}</Button>
             </Form>
             <hr />
         </>

@@ -6,6 +6,7 @@ import { selectUser } from "../../store/auth-slice";
 import Edit from "../../services/Edit";
 
 export default ({ itemEdit }: any) => {
+
     const [nameBrand, setName] = useState('');
 
     const user = useSelector(selectUser);
@@ -44,7 +45,6 @@ export default ({ itemEdit }: any) => {
                 })
         }
     }
-
 
     return (
         <>

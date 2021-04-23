@@ -6,72 +6,62 @@ import { Table, Button } from 'reactstrap';
 import PostCategory from "./PostCategory";
 import Delete from "../../services/Delete";
 
-export default class Category extends React.Component {
-  state = {
-    cates: []
-  }
+export default function Category(props: any) {
 
-  constructor(props: any) {
-    super(props);
-    this.handleDelete = this.handleDelete.bind(this);
+  const [cates, setCates] = React.useState([]);
+  const [itemSelected, setSelected] = React.useState(null);
 
-  }
-  _fetchCategoryData() {
+  const _fetchCategoryData = () => {
     axios.get(`https://pikashop.azurewebsites.net/api/category`)
       .then(res => {
         const cates = res.data;
-        this.setState({ cates });
+        setCates(cates);
         console.log(cates);
       })
       .catch(error => console.log(error));
   }
 
-  componentDidMount() {
-    this._fetchCategoryData();
-  }
+  React.useEffect(() => {
+    _fetchCategoryData();
+  }, [])
 
-  handleDelete(itemId: any) {
+  const handleDelete = (itemId: any) => {
     Delete("category", itemId)
       .then(res => {
-        this._fetchCategoryData();
+        _fetchCategoryData();
       }).catch(err => {
         console.log(err);
       })
   }
 
-  // componentDidMount() {
-  //   axios.get(`https://pikashop.azurewebsites.net/api/category`)
-  //     .then(res => {
-  //       const cates = res.data;
-  //       this.setState({ cates });
-  //       console.log(cates);
-  //     })
-  //     .catch(error => console.log(error));
-  // }
-
-  render() {
-    return (
-      <>
-        <h3>List Categories</h3>
-        <Table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          {this.state.cates.map((cates: ICategory) =>
-            <tbody key={cates.id_category}>
-              <tr>
-                <th scope="row">{cates.id_category}</th>
-                <td>{cates.name_category}</td>
-                <td><Button color="primary">Edit</Button> <Button color="danger" onClick={() => this.handleDelete(cates.id_category)}>Delete</Button></td>
-              </tr>
-            </tbody>)}
-        </Table>
-        <PostCategory />
-        <Button color="warning"><Link to="/">Return Home</Link></Button>
-      </>
-    )
+  const handleEdit = (itemEdit: any) => {
+    setSelected(itemEdit);
   }
+
+  return (
+    <>
+      <h3>List Categories</h3>
+      <Table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        {cates.map((cates: ICategory) =>
+          <tbody key={cates.id_category}>
+            <tr>
+              <th scope="row">{cates.id_category}</th>
+              <td>{cates.name_category}</td>
+              <td>
+                <Button color="primary" onClick={() => handleEdit(cates)}>Edit</Button>
+                <Button color="danger" onClick={() => handleDelete(cates.id_category)}>Delete</Button>
+              </td>
+            </tr>
+          </tbody>)}
+      </Table>
+      <PostCategory itemEdit={itemSelected} />
+      <Button color="warning"><Link to="/">Return Home</Link></Button>
+    </>
+  )
 }

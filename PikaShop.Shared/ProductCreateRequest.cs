@@ -7,7 +7,6 @@ namespace PikaShop.Shared
 {
     public class ProductCreateRequest
     {
-        [Required]
         public string name_product { get; set; }
 
         public string image { get; set; }

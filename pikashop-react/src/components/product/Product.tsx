@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import IProduct from "../../interface/IProduct";
 import { Table, Button } from 'reactstrap';
+import PostProduct from './PostProduct';
 
 export default class Product extends React.Component {
   state = {
@@ -43,7 +44,7 @@ export default class Product extends React.Component {
               <tr>
                 <th scope="row">{cates.id_product}</th>
                 <td>{cates.name_product}</td>
-                <td><img src={"https://pikashop.azurewebsites.net/"+cates.ThumbnailImageUrl} style={{ width: 100, height: 100 }} alt="Product_image"></img></td>
+                <td><img src={"https://pikashop.azurewebsites.net/" + cates.ThumbnailImageUrl} style={{ width: 100, height: 100 }} alt="Product_image"></img></td>
                 <td>{cates.price}</td>
                 <td>{cates.height}</td>
                 <td>{cates.weight}</td>
@@ -54,6 +55,7 @@ export default class Product extends React.Component {
               </tr>
             </tbody>)}
         </Table>
+        <PostProduct />
         <Button color="warning"><Link to="/">Return Home</Link></Button>
       </>
 

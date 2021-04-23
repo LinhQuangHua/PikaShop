@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import ICategory from "../../interface/ICategory";
-import { Table,Button } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import PostCategory from "./PostCategory";
+import Delete from "../../services/Delete";
 
 export default class Category extends React.Component {
   state = {
@@ -36,11 +37,12 @@ export default class Category extends React.Component {
               <tr>
                 <th scope="row">{cates.id_category}</th>
                 <td>{cates.name_category}</td>
+                <td><Button color="primary">Edit</Button> <Button color="danger" component={Delete}>Delete</Button></td>
               </tr>
             </tbody>)}
         </Table>
-        <PostCategory/>
-        <Button color="warning"><Link to="/">Return Home</Link></Button>      
+        <PostCategory />
+        <Button color="warning"><Link to="/">Return Home</Link></Button>
       </>
     )
   }

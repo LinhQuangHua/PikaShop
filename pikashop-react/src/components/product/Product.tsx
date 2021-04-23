@@ -52,6 +52,7 @@ export default class Product extends React.Component {
                 <td>{cates.description}</td>
                 <td>{cates.name_brand}</td>
                 <td>{cates.name_category}</td>
+                <td><Button color="primary">Edit</Button> <Button color="danger">Delete</Button></td>
               </tr>
             </tbody>)}
         </Table>

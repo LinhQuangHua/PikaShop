@@ -4,13 +4,19 @@ import axios from 'axios';
 import IProduct from "../../interface/IProduct";
 import { Table, Button } from 'reactstrap';
 import PostProduct from './PostProduct';
+import Delete from "../../services/Delete";
 
 export default class Product extends React.Component {
   state = {
     cates: []
   }
 
-  componentDidMount() {
+  constructor(props: any) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+
+  }
+  _fetchProductData() {
     axios.get(`https://pikashop.azurewebsites.net/api/product`)
       .then(res => {
         const cates = res.data;
@@ -18,6 +24,19 @@ export default class Product extends React.Component {
         console.log(cates);
       })
       .catch(error => console.log(error));
+  }
+
+  componentDidMount() {
+    this._fetchProductData();
+  }
+
+  handleDelete(itemId: any) {
+    Delete("product", itemId)
+      .then(res => {
+        this._fetchProductData();
+      }).catch(err => {
+        console.log(err);
+      })
   }
 
   render() {
@@ -52,7 +71,7 @@ export default class Product extends React.Component {
                 <td>{cates.description}</td>
                 <td>{cates.name_brand}</td>
                 <td>{cates.name_category}</td>
-                <td><Button color="primary">Edit</Button> <Button color="danger">Delete</Button></td>
+                <td><Button color="primary">Edit</Button> <Button color="danger" onClick={() => this.handleDelete(cates.id_product)}>Delete</Button></td>
               </tr>
             </tbody>)}
         </Table>

@@ -1,31 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Nav, NavItem, NavLink } from 'reactstrap';
-
+import { Nav, NavItem, NavLink, Button, Row, Col } from 'reactstrap';
+import './background/style.css';
 
 const Home = () => {
+
   return (
     <>
-      <div>
-        <h3>Admin page</h3>
-        <Nav vertical>
-          <NavItem>
-            <NavLink><Link to="/about">About</Link></NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink><Link to="/user">User</Link></NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink><Link to="/brand">Brand</Link></NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink><Link to="/category">Category</Link></NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink><Link to="/product">Product</Link></NavLink>
-          </NavItem>
-        </Nav>
-      </div>
+      <Row>
+        <Col xs="2">
+          <Nav vertical className="menu">
+            <h3>Admin page</h3>
+            <NavItem>
+              <NavLink><Link to="/about"><Button className="link" color="primary">About</Button></Link></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink><Link to="/user"><Button className="link" color="info">User</Button></Link></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink><Link to="/brand"><Button className="link" color="warning">Brand</Button></Link></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink><Link to="/category"><Button className="link" color="danger">Category</Button></Link></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink><Link to="/product"><Button className="link" color="secondary">Product</Button></Link></NavLink>
+            </NavItem>
+          </Nav>
+        </Col>
+        <Col xs="10">
+        </Col>
+      </Row>
     </>
   )
 

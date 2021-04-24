@@ -1,0 +1,14 @@
+h3{
+    color: rgb(245, 245, 245);
+    text-align: center;
+}
+.link{
+    width: 150px;
+}
+.menu{
+    padding-top: 15px;
+    border-radius: 10px;
+    background-color: blueviolet;
+    width: 185px;
+    height: 650px;
+}

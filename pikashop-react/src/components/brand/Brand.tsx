@@ -5,6 +5,7 @@ import IBrand from "../../interface/IBrand";
 import { Table, Button } from 'reactstrap';
 import PostBrand from "./PostBrand";
 import Delete from "../../services/Delete";
+import { hostURL } from "../../config";
 
 export default function Brands(props: any) {
 
@@ -12,7 +13,7 @@ export default function Brands(props: any) {
   const [itemSelected, setSelected] = React.useState(null);
 
   const _fetchBrandData = () => {
-    axios.get(`https://pikashop.azurewebsites.net/api/brands`)
+    axios.get(hostURL + `/api/brands`)
       .then(res => {
         const cates = res.data;
         setCates(cates)
@@ -40,13 +41,14 @@ export default function Brands(props: any) {
 
   return (
     <>
-      <div className="container" style={{ backgroundColor: "#6600ff", borderRadius: 10, padding: 30, height: 650 }}>
+      <div className="container" style={{ backgroundColor: "#6600ff", borderRadius: 10, padding: 30, height: 650, color: "#ffffff" }}>
         <h3>List Brands</h3>
         <Table>
           <thead>
             <tr>
               <th>ID</th>
               <th>Name</th>
+              <th />
             </tr>
           </thead>
           {cates.map((cates: IBrand) =>
@@ -55,7 +57,7 @@ export default function Brands(props: any) {
                 <th scope="row">{cates.Id}</th>
                 <td>{cates.Name}</td>
                 <td>
-                  <Button color="primary" onClick={() => handleEdit(cates)}>Edit</Button>
+                  <Button color="primary" onClick={() => handleEdit(cates)}>Edit</Button>{' '}
                   <Button color="danger" onClick={() => handleDelete(cates.Id)} >Delete</Button>
                 </td>
               </tr>

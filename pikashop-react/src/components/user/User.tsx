@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import IUser from "../../interface/IUser";
 import { Table, Button } from 'reactstrap';
+import { hostURL } from "../../config";
 
 export default class User extends React.Component {
   state = {
@@ -10,7 +11,7 @@ export default class User extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`https://pikashop.azurewebsites.net/api/user`)
+    axios.get(hostURL + `/api/user`)
       .then(res => {
         const cates = res.data;
         this.setState({ cates });
@@ -24,7 +25,7 @@ export default class User extends React.Component {
       <>
         <div className="container" style={{ backgroundColor: "#6600ff", borderRadius: 10, padding: 30, height: 650 }}>
           <h3>List Users</h3>
-          <Table>
+          <Table style={{ color: "#ffffff" }}>
             <thead>
               <tr>
                 <th>ID User</th>

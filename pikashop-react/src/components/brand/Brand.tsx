@@ -43,7 +43,7 @@ export default function Brands(props: any) {
     <>
       <div className="container" style={{ backgroundColor: "#6600ff", borderRadius: 10, padding: 30, height: 650, color: "#ffffff" }}>
         <h3>List Brands</h3>
-        <Table>
+        <Table style={{ color: "#ffffff" }}>
           <thead>
             <tr>
               <th>ID</th>

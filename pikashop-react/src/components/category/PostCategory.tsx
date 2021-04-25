@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/auth-slice";
 import Edit from "../../services/Edit";
+import { hostURL } from "../../config";;
 
 export default ({ itemEdit }: any) => {
 
@@ -25,7 +26,7 @@ export default ({ itemEdit }: any) => {
         event.preventDefault();
         if (itemEdit == null) {
             axios.post(
-                `https://pikashop.azurewebsites.net/api/category`,
+                hostURL + `/api/category`,
                 { name_category: nameCate },
                 {
                     headers: { "Authorization": `Bearer ${user?.token}` },

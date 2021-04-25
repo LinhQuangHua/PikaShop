@@ -2,14 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Nav, NavItem, NavLink, Button, Row, Col } from 'reactstrap';
 import './style.css';
+import MenuBackground from "../background/MenuBackground.png";
 
 const Home = () => {
 
   return (
-    <>
+    <>s
       <Row>
         <Col xs="2">
-          <Nav vertical className="menu">
+          <Nav vertical className="menu" style={{ backgroundImage: `url(${MenuBackground})` }}>
             <h3>Admin page</h3>
             <NavItem>
               <NavLink><Link to="/about"><Button className="link" color="primary">About</Button></Link></NavLink>

@@ -40,28 +40,30 @@ export default function Category(props: any) {
 
   return (
     <>
-      <h3>List Categories</h3>
-      <Table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-          </tr>
-        </thead>
-        {cates.map((cates: ICategory) =>
-          <tbody key={cates.id_category}>
+      <div className="container" style={{ backgroundColor: "#6600ff", borderRadius: 10, padding: 30, height: 650 }}>
+        <h3>List Categories</h3>
+        <Table>
+          <thead>
             <tr>
-              <th scope="row">{cates.id_category}</th>
-              <td>{cates.name_category}</td>
-              <td>
-                <Button color="primary" onClick={() => handleEdit(cates)}>Edit</Button>
-                <Button color="danger" onClick={() => handleDelete(cates.id_category)}>Delete</Button>
-              </td>
+              <th>ID</th>
+              <th>Name</th>
             </tr>
-          </tbody>)}
-      </Table>
-      <PostCategory itemEdit={itemSelected} />
-      <Button color="warning"><Link to="/">Return Home</Link></Button>
+          </thead>
+          {cates.map((cates: ICategory) =>
+            <tbody key={cates.id_category}>
+              <tr>
+                <th scope="row">{cates.id_category}</th>
+                <td>{cates.name_category}</td>
+                <td>
+                  <Button color="primary" onClick={() => handleEdit(cates)}>Edit</Button>
+                  <Button color="danger" onClick={() => handleDelete(cates.id_category)}>Delete</Button>
+                </td>
+              </tr>
+            </tbody>)}
+        </Table>
+        <PostCategory itemEdit={itemSelected} />
+        <Button color="warning"><Link to="/">Return Home</Link></Button>
+      </div>
     </>
   )
 }

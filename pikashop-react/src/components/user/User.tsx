@@ -22,25 +22,27 @@ export default class User extends React.Component {
   render() {
     return (
       <>
-        <h3>List Users</h3>
-        <Table>
-          <thead>
-            <tr>
-              <th>ID User</th>
-              <th>Email</th>
-              <th>Phone Number</th>
-            </tr>
-          </thead>
-          {this.state.cates.map((cates: IUser) =>
-            <tbody key={cates.id_user}>
+        <div className="container" style={{ backgroundColor: "#6600ff", borderRadius: 10, padding: 30, height: 650 }}>
+          <h3>List Users</h3>
+          <Table>
+            <thead>
               <tr>
-                <th scope="row">{cates.id_user}</th>
-                <td>{cates.mail_user}</td>
-                <td>{cates.phone}</td>
+                <th>ID User</th>
+                <th>Email</th>
+                <th>Phone Number</th>
               </tr>
-            </tbody>)}
-        </Table>
-        <Button color="warning"><Link to="/">Return Home</Link></Button>
+            </thead>
+            {this.state.cates.map((cates: IUser) =>
+              <tbody key={cates.id_user}>
+                <tr>
+                  <th scope="row">{cates.id_user}</th>
+                  <td>{cates.mail_user}</td>
+                  <td>{cates.phone}</td>
+                </tr>
+              </tbody>)}
+          </Table>
+          <Link to="/"><Button color="warning">Return Home</Button></Link>
+        </div>
       </>
 
     )

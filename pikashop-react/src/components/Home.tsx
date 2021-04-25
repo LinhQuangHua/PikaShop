@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Nav, NavItem, NavLink, Button, Row, Col } from 'reactstrap';
-import './background/style.css';
+import './style.css';
 
 const Home = () => {
 

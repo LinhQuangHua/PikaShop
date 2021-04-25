@@ -8,12 +8,13 @@ import Brand from "../components/brand/Brand";
 import Category from "../components/category/Category";
 import NavMenu from "./NavMenu";
 import Auth from "./Auth";
+import background from "../background/placeholder.png";
 
 const App = () => {
   return (
     <BrowserRouter basename={"/"}>
       <NavMenu />
-      <div className="container">
+      <div className="container-fluid" style={{ backgroundImage: `url(${background})` }}>
         <Switch>
           <Route path="/authentication/:action" component={Auth} />
           <Route path="/category" component={Category} />

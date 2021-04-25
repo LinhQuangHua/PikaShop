@@ -40,28 +40,30 @@ export default function Brands(props: any) {
 
   return (
     <>
-      <h3>List Brands</h3>
-      <Table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-          </tr>
-        </thead>
-        {cates.map((cates: IBrand) =>
-          <tbody key={cates.Id}>
+      <div className="container" style={{ backgroundColor: "#6600ff", borderRadius: 10, padding: 30, height: 650 }}>
+        <h3>List Brands</h3>
+        <Table>
+          <thead>
             <tr>
-              <th scope="row">{cates.Id}</th>
-              <td>{cates.Name}</td>
-              <td>
-                <Button color="primary" onClick={() => handleEdit(cates)}>Edit</Button>
-                <Button color="danger" onClick={() => handleDelete(cates.Id)} >Delete</Button>
-              </td>
+              <th>ID</th>
+              <th>Name</th>
             </tr>
-          </tbody>)}
-      </Table>
-      <PostBrand itemEdit={itemSelected} />
-      <Button color="warning"><Link to="/">Return Home</Link></Button>
+          </thead>
+          {cates.map((cates: IBrand) =>
+            <tbody key={cates.Id}>
+              <tr>
+                <th scope="row">{cates.Id}</th>
+                <td>{cates.Name}</td>
+                <td>
+                  <Button color="primary" onClick={() => handleEdit(cates)}>Edit</Button>
+                  <Button color="danger" onClick={() => handleDelete(cates.Id)} >Delete</Button>
+                </td>
+              </tr>
+            </tbody>)}
+        </Table>
+        <PostBrand itemEdit={itemSelected} />
+        <Link to="/"><Button color="warning">Return Home</Button></Link>
+      </div>
     </>
 
   )

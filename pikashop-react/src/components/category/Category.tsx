@@ -35,6 +35,10 @@ export default function Category(props: any) {
       })
   }
 
+  const handleChange = () => {
+    _fetchCategoryData();
+  }
+
   const handleEdit = (itemEdit: any) => {
     setSelected(itemEdit);
   }
@@ -63,7 +67,7 @@ export default function Category(props: any) {
               </tr>
             </tbody>)}
         </Table>
-        <PostCategory itemEdit={itemSelected} />
+        <PostCategory itemEdit={itemSelected} onChange={handleChange} />
         <Link to="/"><Button color="warning">Return Home</Button></Link>
       </div>
     </>

@@ -3,10 +3,9 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Edit from "../../services/Edit";
 import Create from "../../services/Create";
 
-export default ({ itemEdit }: any) => {
+export default ({ itemEdit, onChange }: any) => {
 
     const [nameCate, setName] = useState('');
-
 
     React.useEffect(() => {
         console.log(itemEdit)
@@ -24,6 +23,7 @@ export default ({ itemEdit }: any) => {
             Create("category", { name_category: nameCate })
                 .then(res => {
                     console.log({ name_category: nameCate });
+                    onChange();
                 }).catch(err => {
                     console.log(err);
                 })
@@ -33,6 +33,7 @@ export default ({ itemEdit }: any) => {
             Edit("category", itemEdit.id_category, { name_category: nameCate })
                 .then(res => {
                     console.log({ name_category: nameCate });
+                    onChange();
                 }).catch(err => {
                     console.log(err);
                 })

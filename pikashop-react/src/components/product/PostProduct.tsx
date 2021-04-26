@@ -3,7 +3,7 @@ import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Edit from "../../services/Edit";
 import Create from "../../services/Create";
 
-export default ({ itemEdit }: any) => {
+export default ({ itemEdit, onChange }: any) => {
     const [namePro, setName] = useState(
         { name_product: '', image: '', ThumbnailImage: '', price: null, height: null, weight: null, description: '', quantity: null, id_brand: 1, id_category: 1 } as any
     );
@@ -40,6 +40,7 @@ export default ({ itemEdit }: any) => {
             Create("product", postData)
                 .then(res => {
                     console.log(postData);
+                    onChange();
                 }).catch(err => {
                     console.log(err);
                 })
@@ -48,6 +49,7 @@ export default ({ itemEdit }: any) => {
             Edit("product", itemEdit.id_product, postData)
                 .then(res => {
                     console.log({ ...postData });
+                    onChange();
                 }).catch(err => {
                     console.log(err);
                 })

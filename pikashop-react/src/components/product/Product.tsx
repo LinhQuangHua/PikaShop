@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
 import IProduct from "../../interface/IProduct";
 import { Table, Button } from 'reactstrap';
 import PostProduct from './PostProduct';
 import Delete from "../../services/Delete";
+import GetList from "../../services/GetList";
 import { hostURL } from "../../config";
 
 export default function Product(props: any) {
@@ -13,13 +13,14 @@ export default function Product(props: any) {
   const [itemSelected, setSelected] = React.useState(null);
 
   const _fetchProductData = () => {
-    axios.get(hostURL + `/api/product`)
+    GetList("product")
       .then(res => {
         const cates = res.data;
-        setCates(cates);
+        setCates(cates)
         console.log(cates);
+      }).catch(err => {
+        console.log(err);
       })
-      .catch(error => console.log(error));
   }
 
   React.useEffect(() => {

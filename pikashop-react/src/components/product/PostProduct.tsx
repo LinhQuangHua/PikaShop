@@ -3,14 +3,21 @@ import axios from 'axios';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/auth-slice";
+import { hostURL } from "../../config";
+import Edit from "../../services/Edit";
 
-export default () => {
+
+export default ({ itemEdit }: any) => {
     const [namePro, setName] = useState(
-        { name_product: '', image: '', ThumbnailImage: '', price: 0, height: 0, weight: 0, description: '', quantity: 0, id_brand: 1, id_category: 1 } as any
+        { name_product: '', image: '', ThumbnailImage: '', price: null, height: null, weight: null, description: '', quantity: null, id_brand: 1, id_category: 1 } as any
     );
 
     const user = useSelector(selectUser);
 
+    React.useEffect(() => {
+        if (itemEdit != null) setName(itemEdit)
+        console.log(itemEdit);
+    }, [itemEdit])
 
     const handleChange = (event: any) => {
         const { name, value } = event.target
@@ -35,81 +42,90 @@ export default () => {
         Object.keys(namePro).forEach(function (key) {
             postData.append(key, namePro[key]);
         });
+        if (itemEdit == null) {
+            axios.post(
+                hostURL + `/api/product`,
+                postData,
+                {
+                    headers: { "Authorization": `Bearer ${user?.token}` },
+                }).then(res => {
+                    console.log(res.data);
+                }).catch(err => {
+                    console.log(err);
+                })
+        }
+        else {
+            Edit("product", itemEdit.id_product, postData)
+                .then(res => {
+                    // console.log({ ...postData });
+                }).catch(err => {
+                    console.log(err);
+                })
+        }
 
-        axios.post(
-            `https://pikashop.azurewebsites.net/api/product`,
-            postData,
-            {
-                headers: { "Authorization": `Bearer ${user?.token}` },
-            }).then(res => {
-                console.log(res.data);
-            }).catch(err => {
-                console.log(err);
-            })
     }
     return (
         <>
             <br />
-            <h5>Add new brand</h5>
-            <Form inline onSubmit={handleSubmit}>
-                <FormGroup row>
-                    <Label sm={2}>Name</Label>
-                    <Col sm={10}>
+            <h5 style={{ color: "#ffffff" }}>Add new brand</h5>
+            <Form inline onSubmit={handleSubmit} style={{ color: "#ffffff" }}>
+                <FormGroup>
+                    <Col>
+                        <Label sm={3}>Name</Label>
                         <Input type="text" value={namePro.name_product} name="name_product" placeholder="Name product..." onChange={handleChange} />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label sm={2}>Image</Label>
-                    <Col sm={10}>
-                        <Input type="file"
-                            name="ThumbnailImage" onChange={handleChange} />
-                    </Col>
-                </FormGroup>
-                <FormGroup row>
-                    <Label sm={2}>Price</Label>
-                    <Col sm={10}>
+                <FormGroup>
+                    <Col>
+                        <Label sm={3}>Price</Label>
                         <Input type="number" value={namePro.price} name="price" placeholder="Price product..." onChange={handleChange} />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label sm={2}>Height</Label>
-                    <Col sm={10}>
+                <FormGroup>
+                    <Col>
+                        <Label sm={3}>Height</Label>
                         <Input type="number" value={namePro.height} name="height" placeholder="Height product..." onChange={handleChange} />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label sm={2}>Weight</Label>
-                    <Col sm={10}>
+                <FormGroup>
+                    <Col>
+                        <Label sm={3}>Weight</Label>
                         <Input type="number" value={namePro.weight} name="weight" placeholder="Weight product..." onChange={handleChange} />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label sm={2}>Description</Label>
-                    <Col sm={10}>
-                        <Input type="textarea" value={namePro.description} name="description" onChange={handleChange} />
-                    </Col>
-                </FormGroup>
-                <FormGroup row>
-                    <Label sm={2}>Quantity</Label>
-                    <Col sm={10}>
+                <FormGroup>
+                    <Col>
+                        <Label sm={4}>Quantity</Label>
                         <Input type="number" value={namePro.quantity} name="quantity" placeholder="Quantity product..." onChange={handleChange} />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label sm={2}>Brand</Label>
+                <FormGroup>
                     <Col sm={10}>
+                        <Label sm={3}>Brand</Label>
                         <Input type="number" value={namePro.id_brand} name="id_brand" placeholder="Brand product..." onChange={handleChange} />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label sm={2}>Category</Label>
-                    <Col sm={10}>
+                <FormGroup>
+                    <Col>
+                        <Label sm={4}>Category</Label>
                         <Input type="number" value={namePro.id_category} name="id_category" placeholder="Category product..." onChange={handleChange} />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Col sm={50}>
-                        <Button type="submit">Add</Button>
+                <FormGroup>
+                    <Col sm={10}>
+                        <Label sm={3}>Description</Label>
+                        <Input type="textarea" value={namePro.description} rows="4" cols="50" name="description" placeholder="Description product..." onChange={handleChange} />
+                    </Col>
+                </FormGroup>
+                <FormGroup>
+                    <Col>
+                        <Label>Image</Label>
+                        <Input type="file" name="ThumbnailImage" onChange={handleChange} />
+                    </Col>
+                </FormGroup>
+                <FormGroup>
+                    <Col>
+                        <Button type="submit" color="success" style={{ width: 100 }}>{itemEdit ? "Save" : "Add"}</Button>
                     </Col>
                 </FormGroup>
             </Form>

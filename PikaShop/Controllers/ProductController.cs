@@ -38,7 +38,8 @@ namespace PikaShop.Controllers
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProducts()
         {
             return await _context.Products.Include(p => p.Brand).Include(p => p.Category)
-                .Select(x => new ProductVm {
+                .Select(x => new ProductVm
+                {
                     id_product = x.id_product,
                     name_product = x.name_product,
                     ThumbnailImageUrl = _storageService.GetFileUrl(x.image),
@@ -49,6 +50,7 @@ namespace PikaShop.Controllers
                     quantity = x.quantity,
                     name_brand = x.Brand.Name,
                     id_category = x.id_category,
+                    id_brand = x.id_brand,
                     name_category = x.Category.name_category,
                 })
                 .ToListAsync();
@@ -75,7 +77,7 @@ namespace PikaShop.Controllers
                 description = product.description,
                 quantity = product.quantity,
                 name_brand = product.Brand.Name,
-                id_category=product.id_category,
+                id_category = product.id_category,
                 name_category = product.Category.name_category
             };
 
@@ -88,19 +90,19 @@ namespace PikaShop.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductVm>>> GetProductByCategory(int CategoryId)
         {
-           return await _context.Products.Include(p => p.Brand).Include(p => p.Category).Where(p => p.id_category == CategoryId)
-                .Select(x => new ProductVm
-                {
-                    id_product = x.id_product,
-                    name_product = x.name_product,
-                    price = x.price,
-                    ThumbnailImageUrl = _storageService.GetFileUrl(x.image),
-                    description = x.description,
-                    name_brand = x.Brand.Name,
-                    name_category = x.Category.name_category,
-                    id_category = x.id_category,
-                })
-                .ToListAsync();
+            return await _context.Products.Include(p => p.Brand).Include(p => p.Category).Where(p => p.id_category == CategoryId)
+                 .Select(x => new ProductVm
+                 {
+                     id_product = x.id_product,
+                     name_product = x.name_product,
+                     price = x.price,
+                     ThumbnailImageUrl = _storageService.GetFileUrl(x.image),
+                     description = x.description,
+                     name_brand = x.Brand.Name,
+                     name_category = x.Category.name_category,
+                     id_category = x.id_category,
+                 })
+                 .ToListAsync();
         }
 
         [HttpGet("related/category/{CategoryId}")]
@@ -119,7 +121,7 @@ namespace PikaShop.Controllers
                     description = x.description,
                     quantity = x.quantity,
                     name_brand = x.Brand.Name,
-                    id_category=x.Category.id_category,
+                    id_category = x.Category.id_category,
                     name_category = x.Category.name_category,
                 })
                 .ToListAsync();
@@ -142,13 +144,13 @@ namespace PikaShop.Controllers
                     name_category = x.Category.name_category,
                     id_category = x.id_category,
                 })
-                .ToListAsync();          
+                .ToListAsync();
         }
 
 
         [HttpPut("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> PutProduct(int id, ProductCreateRequest productCreateRequest)
+        public async Task<IActionResult> PutProduct(int id, [FromForm] ProductCreateRequest productCreateRequest)
         {
             var product = await _context.Products.FindAsync(id);
 
@@ -157,15 +159,21 @@ namespace PikaShop.Controllers
                 return NotFound();
             }
 
-            product.name_product = productCreateRequest.name_product;
-            product.image = productCreateRequest.ThumbnailImage.ToString();
-            product.price = productCreateRequest.price;
-            product.height = productCreateRequest.height;
-            product.weight = productCreateRequest.weight;
-            product.description = productCreateRequest.description;
-            product.quantity = productCreateRequest.quantity;
-            product.id_brand = productCreateRequest.id_brand;
-            product.id_category = productCreateRequest.id_category;
+            if(productCreateRequest.name_product != null) product.name_product = productCreateRequest.name_product;
+            if (productCreateRequest.price > 0)  product.price = productCreateRequest.price;
+            if (productCreateRequest.height > 0) product.height = productCreateRequest.height;
+            if (productCreateRequest.weight > 0) product.weight = productCreateRequest.weight;
+            if (productCreateRequest.description != null) product.description = productCreateRequest.description;
+            if (productCreateRequest.quantity > 0) product.quantity = productCreateRequest.quantity;
+            if (productCreateRequest.id_brand > 0) product.id_brand = productCreateRequest.id_brand;
+            if (productCreateRequest.id_category > 0) product.id_category = productCreateRequest.id_category;
+
+            if (productCreateRequest.ThumbnailImage != null)
+            {
+                product.image = await SaveFile(productCreateRequest.ThumbnailImage);
+                product.image = productCreateRequest.ThumbnailImage.ToString();
+            }
+
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -173,7 +181,7 @@ namespace PikaShop.Controllers
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public async Task<ActionResult<ProductVm>> PostProduct([FromForm]ProductCreateRequest productCreateRequest)
+        public async Task<ActionResult<ProductVm>> PostProduct([FromForm] ProductCreateRequest productCreateRequest)
         {
             var product = new Product
             {
@@ -185,7 +193,7 @@ namespace PikaShop.Controllers
                 quantity = productCreateRequest.quantity,
                 id_brand = productCreateRequest.id_brand,
                 id_category = productCreateRequest.id_category
-        };
+            };
 
             if (productCreateRequest.ThumbnailImage != null)
             {
@@ -195,7 +203,7 @@ namespace PikaShop.Controllers
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.id_product }, null 
+            return CreatedAtAction("GetProduct", new { id = product.id_product }, null
             );
         }
 

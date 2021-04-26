@@ -13,9 +13,6 @@ const Home = () => {
           <Nav vertical className="menu" style={{ backgroundImage: `url(${MenuBackground})` }}>
             <h3>Admin page</h3>
             <NavItem>
-              <NavLink><Link to="/about"><Button className="link" color="primary">About</Button></Link></NavLink>
-            </NavItem>
-            <NavItem>
               <NavLink><Link to="/user"><Button className="link" color="info">User</Button></Link></NavLink>
             </NavItem>
             <NavItem>

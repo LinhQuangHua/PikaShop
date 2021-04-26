@@ -71,6 +71,5 @@ export default function Brands(props: any) {
         <Link to="/"><Button color="warning">Return Home</Button></Link>
       </div>
     </>
-
   )
 }

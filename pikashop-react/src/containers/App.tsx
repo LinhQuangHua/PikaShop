@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "../components/Home";
-import About from "../components/About";
 import User from "../components/user/User";
 import Product from "../components/product/Product";
 import Brand from "../components/brand/Brand";
@@ -21,7 +20,6 @@ const App = () => {
           <Route path="/brand" component={Brand} />
           <Route path="/product" component={Product} />
           <Route path="/user" component={User} />
-          <Route path="/about" component={About} />
           <Route path="/" component={Home} />
         </Switch>
       </div>

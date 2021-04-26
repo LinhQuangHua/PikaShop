@@ -59,7 +59,7 @@ export default ({ itemEdit, onChange }: any) => {
     return (
         <>
             <br />
-            <h5 style={{ color: "#ffffff" }}>Add new brand</h5>
+            <h5 style={{ color: "#ffffff" }}>Add new product</h5>
             <Form inline onSubmit={handleSubmit} style={{ color: "#ffffff" }}>
                 <FormGroup>
                     <Col>

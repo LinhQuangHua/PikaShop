@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { useSelector } from "react-redux";
-import { selectUser } from "../../store/auth-slice";
 import Edit from "../../services/Edit";
-import { hostURL } from "../../config";;
+import Create from "../../services/Create";
 
 export default ({ itemEdit }: any) => {
 
     const [nameCate, setName] = useState('');
 
-    const user = useSelector(selectUser);
 
     React.useEffect(() => {
         console.log(itemEdit)
@@ -25,13 +21,9 @@ export default ({ itemEdit }: any) => {
     const handleSubmit = (event: any) => {
         event.preventDefault();
         if (itemEdit == null) {
-            axios.post(
-                hostURL + `/api/category`,
-                { name_category: nameCate },
-                {
-                    headers: { "Authorization": `Bearer ${user?.token}` },
-                }).then(res => {
-                    console.log(res.data);
+            Create("category", { name_category: nameCate })
+                .then(res => {
+                    console.log({ name_category: nameCate });
                 }).catch(err => {
                     console.log(err);
                 })

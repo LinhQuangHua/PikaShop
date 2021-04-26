@@ -1,18 +1,12 @@
 import React, { useState } from "react";
-import axios from 'axios';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { useSelector } from "react-redux";
-import { selectUser } from "../../store/auth-slice";
-import { hostURL } from "../../config";
 import Edit from "../../services/Edit";
-
+import Create from "../../services/Create";
 
 export default ({ itemEdit }: any) => {
     const [namePro, setName] = useState(
         { name_product: '', image: '', ThumbnailImage: '', price: null, height: null, weight: null, description: '', quantity: null, id_brand: 1, id_category: 1 } as any
     );
-
-    const user = useSelector(selectUser);
 
     React.useEffect(() => {
         if (itemEdit != null) setName(itemEdit)
@@ -43,13 +37,9 @@ export default ({ itemEdit }: any) => {
             postData.append(key, namePro[key]);
         });
         if (itemEdit == null) {
-            axios.post(
-                hostURL + `/api/product`,
-                postData,
-                {
-                    headers: { "Authorization": `Bearer ${user?.token}` },
-                }).then(res => {
-                    console.log(res.data);
+            Create("product", postData)
+                .then(res => {
+                    console.log(postData);
                 }).catch(err => {
                     console.log(err);
                 })
@@ -57,7 +47,7 @@ export default ({ itemEdit }: any) => {
         else {
             Edit("product", itemEdit.id_product, postData)
                 .then(res => {
-                    // console.log({ ...postData });
+                    console.log({ ...postData });
                 }).catch(err => {
                     console.log(err);
                 })

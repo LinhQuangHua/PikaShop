@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Edit from "../../services/Edit";
 import Create from "../../services/Create";
 
-export default ({ itemEdit }: any) => {
+export default ({ itemEdit, onChange }: any) => {
 
     const [nameBrand, setName] = useState('');
 
@@ -23,6 +23,7 @@ export default ({ itemEdit }: any) => {
             Create("brands", { name: nameBrand })
                 .then(res => {
                     console.log({ name: nameBrand });
+                    onChange();
                 }).catch(err => {
                     console.log(err);
                 })
@@ -32,6 +33,7 @@ export default ({ itemEdit }: any) => {
             Edit("brands", itemEdit.Id, { name: nameBrand })
                 .then(res => {
                     console.log({ name: nameBrand });
+                    onChange();
                 }).catch(err => {
                     console.log(err);
                 })

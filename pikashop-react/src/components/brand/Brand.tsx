@@ -35,6 +35,10 @@ export default function Brands(props: any) {
       })
   }
 
+  const handleChange = () => {
+    _fetchBrandData();
+  }
+
   const handleEdit = (itemEdit: any) => {
     setSelected(itemEdit);
   }
@@ -63,7 +67,7 @@ export default function Brands(props: any) {
               </tr>
             </tbody>)}
         </Table>
-        <PostBrand itemEdit={itemSelected} />
+        <PostBrand itemEdit={itemSelected} onChange={handleChange} />
         <Link to="/"><Button color="warning">Return Home</Button></Link>
       </div>
     </>

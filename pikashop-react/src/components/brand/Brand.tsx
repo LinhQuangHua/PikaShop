@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
 import IBrand from "../../interface/IBrand";
 import { Table, Button } from 'reactstrap';
 import PostBrand from "./PostBrand";
 import Delete from "../../services/Delete";
-import { hostURL } from "../../config";
+import GetList from "../../services/GetList";
 
 export default function Brands(props: any) {
 
@@ -13,13 +12,14 @@ export default function Brands(props: any) {
   const [itemSelected, setSelected] = React.useState(null);
 
   const _fetchBrandData = () => {
-    axios.get(hostURL + `/api/brands`)
+    GetList("brands")
       .then(res => {
         const cates = res.data;
         setCates(cates)
         console.log(cates);
+      }).catch(err => {
+        console.log(err);
       })
-      .catch(error => console.log(error));
   }
 
   React.useEffect(() => {

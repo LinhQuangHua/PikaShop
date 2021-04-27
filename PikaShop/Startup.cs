@@ -65,7 +65,7 @@ namespace PikaShop
                .AddInMemoryClients(IdentityServerConfig.Clients(clientUrls))
                .AddAspNetIdentity<IdentityUser>()
                .AddProfileService<CustomProfileService>()
-               .AddDeveloperSigningCredential(); 
+               .AddDeveloperSigningCredential();
 
             services.AddAuthentication()
                .AddLocalApi("Bearer", option =>
@@ -116,7 +116,6 @@ namespace PikaShop
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

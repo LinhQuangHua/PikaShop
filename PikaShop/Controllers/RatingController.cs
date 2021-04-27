@@ -21,6 +21,7 @@ namespace PikaShop.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IStorageService _storageService;
+
         public RatingController(ApplicationDbContext context, IStorageService storageService)
         {
             _context = context;
@@ -88,12 +89,10 @@ namespace PikaShop.Controllers
                 ApplicationUserId = userId,
                 id_product = request.id_product
             };
-
-
             try
             {
-            _context.RatingProducts.Add(rating);
-            await _context.SaveChangesAsync();
+                _context.RatingProducts.Add(rating);
+                await _context.SaveChangesAsync();
 
             }
             catch (Exception e)

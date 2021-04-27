@@ -31,8 +31,5 @@ namespace PikaShop.Models
         public int id_brand { get; set; }
 
         public Brand Brand { get; set; }
-
-
-
     }
 }

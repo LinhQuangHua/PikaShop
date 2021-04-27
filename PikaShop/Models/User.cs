@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace PikaShop.Models
 {
     public class User: IdentityUser
-    {
-        
+    {   
     }
 }

@@ -37,7 +37,6 @@ namespace PikaShop.IdentityServer
                     ClientSecrets = { new Secret("secret".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    // scopes that client has access to
                     AllowedScopes = { "pikashop.api" }
                 },
 
@@ -72,7 +71,6 @@ namespace PikaShop.IdentityServer
                     RedirectUris =           { $"{clientUrls["Swagger"]}/swagger/oauth2-redirect.html" },
                     PostLogoutRedirectUris = { $"{clientUrls["Swagger"]}/swagger/oauth2-redirect.html" },
                     AllowedCorsOrigins =     { $"{clientUrls["Swagger"]}" },
-
 
                     AllowedScopes = new List<string>
                     {

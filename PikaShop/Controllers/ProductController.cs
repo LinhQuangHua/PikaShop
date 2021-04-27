@@ -159,8 +159,8 @@ namespace PikaShop.Controllers
                 return NotFound();
             }
 
-            if(productCreateRequest.name_product != null) product.name_product = productCreateRequest.name_product;
-            if (productCreateRequest.price > 0)  product.price = productCreateRequest.price;
+            if (productCreateRequest.name_product != null) product.name_product = productCreateRequest.name_product;
+            if (productCreateRequest.price > 0) product.price = productCreateRequest.price;
             if (productCreateRequest.height > 0) product.height = productCreateRequest.height;
             if (productCreateRequest.weight > 0) product.weight = productCreateRequest.weight;
             if (productCreateRequest.description != null) product.description = productCreateRequest.description;

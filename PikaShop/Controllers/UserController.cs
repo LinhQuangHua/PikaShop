@@ -30,11 +30,12 @@ namespace PikaShop.Controllers
         {
             return await _context.Users
                 .Where(x => x.Email != "admin@gmail.com")
-                .Select(x => new UserVm {
-                    id_user = x.Id, 
+                .Select(x => new UserVm
+                {
+                    id_user = x.Id,
                     mail_user = x.Email,
                     phone = x.PhoneNumber,
-                
+
                 })
                 .ToListAsync();
         }

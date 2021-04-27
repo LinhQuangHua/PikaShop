@@ -12,7 +12,6 @@ namespace PikaShop.Data
     {
         public static async Task Initialize(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
-            //Seed Roles
 
             if (!roleManager.RoleExistsAsync("admin").Result)
             {
@@ -22,7 +21,7 @@ namespace PikaShop.Data
             {
                 await roleManager.CreateAsync(new IdentityRole("user"));
             }
-            //Seed Default User
+
             var defaultUser = new User
             {
                 UserName = "admin@gmail.com",
@@ -31,6 +30,7 @@ namespace PikaShop.Data
                 PhoneNumber = "0869295974",
                 PhoneNumberConfirmed = true
             };
+
             if (userManager.Users.Count(u => u.Email == defaultUser.Email) == 0)
             {
                 IdentityResult result = await userManager.CreateAsync(defaultUser, "Admin2000@");

@@ -15,11 +15,6 @@ namespace PikaShop
 {
     public class Program
     {
-        //public static void Main(string[] args)
-        //{
-        //    CreateHostBuilder(args).Build().Run();
-        //}
-
         public async static Task Main(string[] args)
         {
             var host = CreateHostBuilder(args)
@@ -30,7 +25,6 @@ namespace PikaShop
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
-                    //Seed Default Users
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await DbInitializer.Initialize(userManager, roleManager);
@@ -43,7 +37,6 @@ namespace PikaShop
             }
             host.Run();
         }
-
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)

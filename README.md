@@ -66,10 +66,10 @@ Pikashop include of pages:
 
 
 ### 2. Architecture
-
+![Pikashop Architecture](https://github.com/LinhQuangHua/PikaShop/blob/main/doc/PikaShop%20Architecture.jpg)
 
 ### 3. Entity Relationship Diagram (ERD)
-
+![Pikashop Database](https://github.com/LinhQuangHua/PikaShop/blob/main/doc/PikaShop_db.jpg)
 #
 # II. Customer Site (.NETCore Mvc)
 

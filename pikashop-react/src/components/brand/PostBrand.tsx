@@ -26,10 +26,10 @@ export default ({ itemEdit, onChange }: any) => {
                 .then(res => {
                     console.log({ name: nameBrand });
                     onChange();
-                    toast.success(`Add product ${nameBrand} Success notification`, { position: toast.POSITION.TOP_RIGHT });
+                    toast.success(`Add a new brand ${nameBrand} Success notification`, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 }).catch(err => {
                     console.log(err);
-                    toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT });
+                    toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 })
         }
         else {
@@ -38,10 +38,10 @@ export default ({ itemEdit, onChange }: any) => {
                 .then(res => {
                     console.log({ name: nameBrand });
                     onChange();
-                    toast.success(`Edit product Id has ${itemEdit.Id} Success notification`, { position: toast.POSITION.TOP_RIGHT });
+                    toast.success(`Edit a brand has Id is ${itemEdit.Id} Success notification`, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 }).catch(err => {
                     console.log(err);
-                    toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT });
+                    toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 })
         }
     }

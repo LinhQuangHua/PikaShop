@@ -32,10 +32,10 @@ export default function Brands(props: any) {
     Delete("brands", itemId)
       .then(res => {
         _fetchBrandData();
-        toast.success(`Delete category has Id ${itemId} Success notification`, { position: toast.POSITION.TOP_RIGHT });
+        toast.success(`Delete a brand has Id is ${itemId} Success notification`, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
       }).catch(err => {
         console.log(err);
-        toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT });
+        toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
       })
   }
 

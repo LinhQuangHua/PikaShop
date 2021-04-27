@@ -34,7 +34,7 @@ export default function Brands(props: any) {
 
     return (
         <>
-            <Input type="select" value={cateSelected} name="cates.Name" onChange={handleChange}>
+            <Input type="select" value={cateSelected} name="Name" onChange={handleChange}>
                 {cates.map((cates: IBrand) => (
                     <option key={+cates.Id} value={cates.Id}>
                         {cates.Name}

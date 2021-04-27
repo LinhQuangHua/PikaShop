@@ -34,7 +34,7 @@ export default function Categories(props: any) {
 
     return (
         <>
-            <Input type="select" value={cateSelected} name="cates.name_category" onChange={handleChange}>
+            <Input type="select" value={cateSelected} name="name_category" onChange={handleChange}>
                 {cates.map((cates: ICategory) => (
                     <option key={+cates.id_category} value={cates.id_category}>
                         {cates.name_category}

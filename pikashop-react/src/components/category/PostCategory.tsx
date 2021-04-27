@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Edit from "../../services/Edit";
 import Create from "../../services/Create";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default ({ itemEdit, onChange }: any) => {
 
@@ -24,8 +26,10 @@ export default ({ itemEdit, onChange }: any) => {
                 .then(res => {
                     console.log({ name_category: nameCate });
                     onChange();
+                    toast.success(`Add a new category ${nameCate} Success notification`, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 }).catch(err => {
                     console.log(err);
+                    toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 })
         }
         else {
@@ -34,8 +38,10 @@ export default ({ itemEdit, onChange }: any) => {
                 .then(res => {
                     console.log({ name_category: nameCate });
                     onChange();
+                    toast.success(`Edit a category has Id is ${itemEdit.id_category} Success notification`, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 }).catch(err => {
                     console.log(err);
+                    toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 })
         }
     }
@@ -50,6 +56,7 @@ export default ({ itemEdit, onChange }: any) => {
                     <Input type="text" value={nameCate} placeholder="New category..." onChange={handleChange} />
                 </FormGroup>
                 <Button type="submit">{itemEdit ? "Save" : "Add"}</Button>
+                <ToastContainer />
             </Form>
             <hr />
         </>

@@ -5,6 +5,8 @@ import { Table, Button } from 'reactstrap';
 import PostCategory from "./PostCategory";
 import Delete from "../../services/Delete"
 import GetList from "../../services/GetList";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Category(props: any) {
 
@@ -30,8 +32,10 @@ export default function Category(props: any) {
     Delete("category", itemId)
       .then(res => {
         _fetchCategoryData();
+        toast.success(`Delete a category has Id is ${itemId} Success notification`, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
       }).catch(err => {
         console.log(err);
+        toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
       })
   }
 
@@ -63,6 +67,7 @@ export default function Category(props: any) {
                 <td>
                   <Button color="primary" onClick={() => handleEdit(cates)}>Edit</Button>{' '}
                   <Button color="danger" onClick={() => handleDelete(cates.id_category)}>Delete</Button>
+                  <ToastContainer />
                 </td>
               </tr>
             </tbody>)}

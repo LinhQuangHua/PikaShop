@@ -14,13 +14,6 @@ namespace PikaShop.CustomerSite.ViewComponents
             _iratingService = iratingService;
         }
 
-        //public IViewComponentResult Invoke(int id)
-        //{
-        //    RatingCreateRequest ratingVm = new RatingCreateRequest();
-        //    ratingVm.id_product = id;
-        //    return View(ratingVm);
-        //}
-
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
             var ratingVm = await _iratingService.GetRatingByProductId(id);

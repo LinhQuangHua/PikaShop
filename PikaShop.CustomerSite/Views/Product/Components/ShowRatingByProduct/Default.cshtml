@@ -1,4 +1,5 @@
 ﻿@model IList<PikaShop.Shared.RatingVm>
+
 <style>
     .avatar {
         vertical-align: middle;
@@ -7,11 +8,13 @@
         margin: auto;
         width: 40%;
     }
+
     .col > img {
         vertical-align: middle;
         border-radius: 10px;
         width: 220px;
     }
+
     .card{
         width: 12rem;
     }
@@ -30,22 +33,24 @@ else {
 <div class="row">
     @foreach (var rating in Model)
     {
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <img src="~/image/avatar-cirle.png" alt="Avatar" class="avatar">
-                <p class="card-date">@rating.date</p>
-                <p class="card-comment">@rating.comment</p>
-                <span>
-                    @{ for (int i = 1; i <= rating.totalStar; i++)
-                                        {
-                        <i class="fa fa-star" style="color:yellow"></i> }
-                                        for (int i = 1; i <= 5 - rating.totalStar; i++)
-                                        {
-                        <i class="fa fa-star"></i> } }
-                </span>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <img src="~/image/avatar-cirle.png" alt="Avatar" class="avatar">
+                    <p class="card-date">@rating.date</p>
+                    <p class="card-comment">@rating.comment</p>
+                    <span>
+                        @{ for (int i = 1; i <= rating.totalStar; i++)
+                            {
+                                <i class="fa fa-star" style="color:yellow"></i>
+                            }
+                            for (int i = 1; i <= 5 - rating.totalStar; i++)
+                            {
+                                <i class="fa fa-star"></i> 
+                            } }
+                    </span>
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>

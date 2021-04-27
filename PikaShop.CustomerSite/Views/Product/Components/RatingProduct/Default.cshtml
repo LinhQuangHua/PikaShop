@@ -1,21 +1,19 @@
 ﻿@model PikaShop.Shared.RatingCreateRequest
+
 <section class="latest-product-area latest-padding">
     <div class="container">
         <div class="row product-btn d-flex justify-content-between">
             <div class="properties__button">
-                <!--Nav Button  -->
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Đánh giá sản phẩm</a>
                     </div>
                 </nav>
-                <!--End Nav Button  -->
             </div>
 
         </div>
-        <!-- Nav Card -->
+
         <div class="tab-content" id="nav-tabContent">
-            <!-- card one -->
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="row">
                     <div class="col-lg-4">
@@ -31,7 +29,6 @@
                                     <i class="ratingStar fa fa-star-o" data-value="5"></i>
                                 </span>
                                 <input type="hidden" value="1" asp-for="@Model.totalStar" />
-                                @*<input type="text" asp-for="@Model.comment" placeholder="Enter Feedback">*@
                                 <textarea rows="4" cols="50"  type="text" asp-for="@Model.comment">Enter text here...</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -40,9 +37,9 @@
                 </div>
             </div>
         </div>
-        <!-- End Nav Card -->
     </div>
 </section>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
     $(".ratingStar").hover(function () {
@@ -53,7 +50,5 @@
     $(".ratingStar").click(function () {
         var starValue = $(this).attr("data-value");
         $("#totalStar").val(starValue);
-/*        alert($("#totalStar").attr('value'));*/
-    });
-    
+    }); 
 </script>

@@ -29,6 +29,7 @@ namespace PikaShop.CustomerSite.Controllers
         public async Task<IActionResult> Create(RatingCreateRequest rating)
         {
             string userToken = await HttpContext.GetTokenAsync("access_token");
+
             await _ratingClient.PostRating(userToken, rating);
             return RedirectToAction("Details", "Product", new { id = rating.id_product });
         }
@@ -36,6 +37,7 @@ namespace PikaShop.CustomerSite.Controllers
         public async Task<IActionResult> ShowRatingByProduct(int id)
         {
             var result = await _ratingClient.GetRatingByProductId(id);
+
             return View(result);
         }
     }

@@ -24,6 +24,7 @@ namespace PikaShop.CustomerSite.Controllers
         public async Task<IActionResult> Index()
         {
             List<int> lstCartItems = HttpContext.Session.Get<List<int>>("ssShoppingCart");
+
             var results = await _productApiClient.GetProductByArray(lstCartItems);
             return View(results);
         }
@@ -37,6 +38,7 @@ namespace PikaShop.CustomerSite.Controllers
             if (lstCartItems is null)
             {
                 lstCartItems = new List<int>();
+
                 if (!lstCartItems.Contains(id))
                 {
                     lstCartItems.Add(id);
@@ -46,7 +48,9 @@ namespace PikaShop.CustomerSite.Controllers
             {
                 lstCartItems.Add(id);
             }
+
             HttpContext.Session.Set("ssShoppingCart", lstCartItems);
+
             return RedirectToAction("Details", "Product", new { id = id });
         }
 
@@ -58,6 +62,7 @@ namespace PikaShop.CustomerSite.Controllers
             if (lstCartItems is null)
             {
                 lstCartItems = new List<int>();
+
                 if (!lstCartItems.Contains(id))
                 {
                     lstCartItems.Add(id);
@@ -67,13 +72,16 @@ namespace PikaShop.CustomerSite.Controllers
             {
                 lstCartItems.Add(id);
             }
+
             HttpContext.Session.Set("ssShoppingCart", lstCartItems);
+
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Remove(int id)
         {
             List<int> lstCartItems = HttpContext.Session.Get<List<int>>("ssShoppingCart");
+
             if (lstCartItems.Count > 0)
             {
                 if (lstCartItems.Contains(id))
@@ -81,7 +89,9 @@ namespace PikaShop.CustomerSite.Controllers
                     lstCartItems.Remove(id);
                 }
             }
+
             HttpContext.Session.Set("ssShoppingCart", lstCartItems);
+
             return RedirectToAction(nameof(Index));
         }
     }

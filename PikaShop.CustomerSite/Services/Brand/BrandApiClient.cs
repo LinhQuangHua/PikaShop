@@ -9,6 +9,7 @@ namespace PikaShop.CustomerSite.Services
     public class BrandApiClient : IBrandApiClient
     {
         private readonly HttpClient _client;
+
         public BrandApiClient(IHttpClientFactory httpClientFactory)
         {
             _client = httpClientFactory.CreateClient("host");
@@ -18,6 +19,7 @@ namespace PikaShop.CustomerSite.Services
         public async Task<IList<BrandVm>> GetBrands()
         {
             var response = await _client.GetAsync("api/brands");
+
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<IList<BrandVm>>();
         }

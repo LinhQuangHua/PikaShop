@@ -4,6 +4,8 @@ import Edit from "../../services/Edit";
 import Create from "../../services/Create";
 import SelectBrand from "./SelectBrand";
 import SelectCategory from "./SelectCategory";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default ({ itemEdit, onChange }: any) => {
     const [namePro, setName] = useState(
@@ -41,9 +43,11 @@ export default ({ itemEdit, onChange }: any) => {
             Create("product", postData)
                 .then(res => {
                     console.log(postData);
+                    toast.success(`Add a new product is ${namePro.name_product} Success notification`, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                     onChange();
                 }).catch(err => {
                     console.log(err);
+                    toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 })
         }
         else {
@@ -51,8 +55,10 @@ export default ({ itemEdit, onChange }: any) => {
                 .then(res => {
                     console.log({ ...postData });
                     onChange();
+                    toast.success(`Edit a product has Id is ${itemEdit.id_product} Success notification`, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 }).catch(err => {
                     console.log(err);
+                    toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
                 })
         }
 
@@ -121,6 +127,7 @@ export default ({ itemEdit, onChange }: any) => {
                 <FormGroup>
                     <Col>
                         <Button type="submit" color="success" style={{ width: 100 }}>{itemEdit ? "Save" : "Add"}</Button>
+                        <ToastContainer />
                     </Col>
                 </FormGroup>
             </Form>

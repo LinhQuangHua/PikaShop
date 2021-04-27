@@ -6,6 +6,8 @@ import PostProduct from './PostProduct';
 import Delete from "../../services/Delete";
 import GetList from "../../services/GetList";
 import { hostURL } from "../../config";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Product(props: any) {
 
@@ -31,8 +33,10 @@ export default function Product(props: any) {
     Delete("product", itemId)
       .then(res => {
         _fetchProductData();
+        toast.success(`Delete a product has Id is ${itemId} Success notification`, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
       }).catch(err => {
         console.log(err);
+        toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 });
       })
   }
 
@@ -80,6 +84,7 @@ export default function Product(props: any) {
                 <td>
                   <Button color="primary" style={{ marginBottom: 10 }} onClick={() => handleEdit(cates)}>Edit</Button>
                   <Button color="danger" onClick={() => handleDelete(cates.id_product)}>Delete</Button>
+                  <ToastContainer />
                 </td>
               </tr>
             </tbody>)}

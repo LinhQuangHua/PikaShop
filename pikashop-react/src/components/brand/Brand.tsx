@@ -5,6 +5,8 @@ import { Table, Button } from 'reactstrap';
 import PostBrand from "./PostBrand";
 import Delete from "../../services/Delete";
 import GetList from "../../services/GetList";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Brands(props: any) {
 
@@ -30,8 +32,10 @@ export default function Brands(props: any) {
     Delete("brands", itemId)
       .then(res => {
         _fetchBrandData();
+        toast.success(`Delete category has Id ${itemId} Success notification`, { position: toast.POSITION.TOP_RIGHT });
       }).catch(err => {
         console.log(err);
+        toast.error("Error notification", { position: toast.POSITION.TOP_RIGHT });
       })
   }
 
@@ -63,6 +67,7 @@ export default function Brands(props: any) {
                 <td>
                   <Button color="primary" onClick={() => handleEdit(cates)}>Edit</Button>{' '}
                   <Button color="danger" onClick={() => handleDelete(cates.Id)} >Delete</Button>
+                  <ToastContainer />
                 </td>
               </tr>
             </tbody>)}

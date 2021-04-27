@@ -12,10 +12,7 @@ namespace PikaShop.Shared
 
         public string name_product { get; set; }
 
-        //public string image { get; set; }
-
         public string ThumbnailImageUrl { get; set; }
-
 
         public float price { get; set; }
 
@@ -34,7 +31,5 @@ namespace PikaShop.Shared
         public int id_category { get; set; }
 
         public int id_brand { get; set; }
-
-
     }
 }

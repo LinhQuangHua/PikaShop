@@ -9,8 +9,6 @@ namespace PikaShop.Shared
 {
     public class RatingCreateRequest
     {
-
-
         public string comment { get; set; }
 
         public int id_product { get; set; }

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Edit from "../../services/Edit";
 import Create from "../../services/Create";
+import SelectBrand from "./SelectBrand";
+import SelectCategory from "./SelectCategory";
 
 export default ({ itemEdit, onChange }: any) => {
     const [namePro, setName] = useState(
@@ -26,7 +28,6 @@ export default ({ itemEdit, onChange }: any) => {
                 [name]: value
             })
         }
-
     }
 
     const handleSubmit = (event: any) => {
@@ -94,13 +95,15 @@ export default ({ itemEdit, onChange }: any) => {
                 <FormGroup>
                     <Col sm={10}>
                         <Label sm={3}>Brand</Label>
-                        <Input type="number" value={namePro.id_brand} name="id_brand" placeholder="Brand product..." onChange={handleChange} />
+                        {/* <Input type="number" value={namePro.id_brand} name="id_brand" placeholder="Brand product..." onChange={handleChange} /> */}
+                        <SelectBrand itemSelected={namePro.id_brand} name="id_brand" onChange={handleChange} />
                     </Col>
                 </FormGroup>
                 <FormGroup>
                     <Col>
                         <Label sm={4}>Category</Label>
-                        <Input type="number" value={namePro.id_category} name="id_category" placeholder="Category product..." onChange={handleChange} />
+                        {/* <Input type="number" value={namePro.id_category} name="id_category" placeholder="Category product..." onChange={handleChange} /> */}
+                        <SelectCategory itemSelected={namePro.id_category} name="id_category" onChange={handleChange} />
                     </Col>
                 </FormGroup>
                 <FormGroup>

@@ -1,0 +1,30 @@
+Assignment
+
+Build an ecommerce web site with minimum functionality below:
+
+For customers:
+	- Home page: category menu, features products
+	- View products by category
+	- View product details
+	- Product rating
+	- Register
+	- Login/Logout
+	- Optional (paging,add to cart,shopping cart, ordering)
+
+For admin:
+	- Login/logout
+	- Manage product categories (Name, Description)
+	- Manage products (Name, Category, Description, Price, Images, CreatedDate, UpdatedDate)
+	- View customers(create api get user list)
+
+The project should apply as many techniques of ASP.NET MVC Core as possible. 
+For example: TagHelpers, ViewComponents, Razor Pages and have Unit Test. 
+The Unit Test do not need to have a high coverage number but should demonstrate
+ the ability to write unit test for common components: Controllers, ViewComponents, Services, …
+
+Scoring portions
+
+	- 15% commit quality: For example, the code should be checked-in everyday, comments of commits, quality of commit history.
+	- 55% runnable and meet all the requirement.
+	- 30% beyond runnable: good layout, good code, rich features
+

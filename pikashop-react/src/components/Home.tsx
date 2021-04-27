@@ -31,7 +31,6 @@ const Home = () => {
       </Row>
     </>
   )
-
 };
 
 export default Home;

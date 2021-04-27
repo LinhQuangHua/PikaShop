@@ -8,8 +8,6 @@ export default function Categories(props: any) {
     const [cates, setCates] = React.useState([]);
     const [cateSelected, setSelected] = React.useState(0);
 
-
-
     const _fetchCategoryData = () => {
         GetList("category")
             .then(res => {

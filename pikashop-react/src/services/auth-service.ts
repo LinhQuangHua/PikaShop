@@ -13,6 +13,7 @@ const oidcSettings: UserManagerSettings = {
 };
 
 class AuthService {
+
   public userManager: UserManager;
 
   constructor() {

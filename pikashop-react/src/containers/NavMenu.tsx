@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-
 import LoginMenu from "../components/LoginMenu";
 import { selectIsAuthenticated, selectUser } from "../store/auth-slice";
 
@@ -15,8 +13,7 @@ const NavMenu = () => {
       <nav className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div className="container">
           <Link to="/" className="navbar-brand">
-            {/* PikaShop */}
-            <img src="../pikashop.png"  width="50%" alt="logo"/>
+            <img src="../pikashop.png" width="50%" alt="logo" />
           </Link>
           <button
             className="navbar-toggler"

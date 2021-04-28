@@ -16,7 +16,7 @@ const Home = () => {
               <NavLink><Link to="/user"><Button className="link" color="info">User</Button></Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink><Link to="/brand"><Button className="link" color="warning">Brand</Button></Link></NavLink>
+              <NavLink><Link to="/brand"><Button className="link" color="warning" style={{ color: "#ffffff" }}>Brand</Button></Link></NavLink>
             </NavItem>
             <NavItem>
               <NavLink><Link to="/category"><Button className="link" color="danger">Category</Button></Link></NavLink>

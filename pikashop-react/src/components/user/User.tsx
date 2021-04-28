@@ -25,7 +25,7 @@ export default function Brands(props: any) {
 
   return (
     <>
-      <div className="container" style={{ backgroundColor: "#6600ff", borderRadius: 10, padding: 30, height: 650 }}>
+      <div className="container" style={{ backgroundColor: "#000000b3", borderRadius: 10, padding: 30, height: 650 }}>
         <h3>List Users</h3>
         <Table style={{ color: "#ffffff" }}>
           <thead>
@@ -44,7 +44,7 @@ export default function Brands(props: any) {
               </tr>
             </tbody>)}
         </Table>
-        <Link to="/"><Button color="warning">Return Home</Button></Link>
+        <Link to="/"><Button color="warning" style={{ color: "#ffffff" }}>Return Home</Button></Link>
       </div>
     </>
   )

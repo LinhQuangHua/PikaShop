@@ -50,7 +50,7 @@ export default function Product(props: any) {
 
   return (
     <>
-      <div className="container" style={{ backgroundColor: "#6600ff", borderRadius: 10, padding: 30, height: "auto" }}>
+      <div className="container" style={{ backgroundColor: "#000000b3", borderRadius: 10, padding: 30, height: "auto" }}>
         <h3>List Products</h3>
         <Table style={{ color: "#ffffff" }}>
           <thead>
@@ -90,7 +90,7 @@ export default function Product(props: any) {
             </tbody>)}
         </Table>
         <PostProduct itemEdit={itemSelected} onChange={handleChange} />
-        <Link to="/"><Button color="warning">Return Home</Button></Link>
+        <Link to="/"><Button color="warning" style={{ color: "#ffffff" }}>Return Home</Button></Link>
       </div>
     </>
 

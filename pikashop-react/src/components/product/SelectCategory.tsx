@@ -3,7 +3,7 @@ import ICategory from "../../interface/ICategory";
 import { Input } from 'reactstrap';
 import GetList from "../../services/GetList";
 
-export default function Categories(props: any) {
+export default function Categories({ onChange, itemSelected }: any) {
 
     const [cates, setCates] = React.useState([]);
     const [cateSelected, setSelected] = React.useState(0);
@@ -24,17 +24,12 @@ export default function Categories(props: any) {
     }, [])
 
     React.useEffect(() => {
-        setSelected(props.itemSelected)
-    }, [props.itemSelected])
-
-    const handleChange = (event: any) => {
-        let val = event.target.value;
-        setSelected(val);
-    }
+        setSelected(itemSelected)
+    }, [itemSelected])
 
     return (
         <>
-            <Input type="select" value={cateSelected} name="name_category" onChange={handleChange}>
+            <Input type="select" value={cateSelected} name="id_category" onChange={onChange}>
                 {cates.map((cates: ICategory) => (
                     <option key={+cates.id_category} value={cates.id_category}>
                         {cates.name_category}

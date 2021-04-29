@@ -1,11 +1,11 @@
 import { User, UserManager, UserManagerSettings } from "oidc-client";
-import { hostURL } from "../config";
+import { hostURL, authURL } from "../config";
 
 const oidcSettings: UserManagerSettings = {
   authority: hostURL,
   client_id: "react_code_client",
-  redirect_uri: "http://localhost:3000/authentication/login-callback",
-  post_logout_redirect_uri: "http://localhost:3000/authentication/logout-callback",
+  redirect_uri: `${authURL}/authentication/login-callback`,
+  post_logout_redirect_uri: `${authURL}/authentication/logout-callback`,
   response_type: "code",
   scope: "pikashop.api openid profile",
   automaticSilentRenew: true,

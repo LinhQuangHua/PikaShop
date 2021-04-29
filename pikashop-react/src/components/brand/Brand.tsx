@@ -49,9 +49,9 @@ export default function Brands(props: any) {
 
   return (
     <>
-      <div className="container" style={{ backgroundColor: "#000000b3", borderRadius: 10, padding: 30, height: 650, color: "#ffffff" }}>
-        <h3>List Brands</h3>
-        <Table style={{ color: "#ffffff" }}>
+      <div className="container" style={{ backgroundColor: "#ffffff", borderRadius: 10, padding: 30, height: 650, color: "#000000" }}>
+        <h3 style={{ color: "#000000" }}>List Brands</h3>
+        <Table style={{ color: "#000000" }}>
           <thead>
             <tr>
               <th>ID</th>

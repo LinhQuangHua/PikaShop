@@ -102,14 +102,12 @@ export default ({ itemEdit, onChange }: any) => {
                 <FormGroup>
                     <Col sm={10}>
                         <Label sm={3}>Brand</Label>
-                        {/* <Input type="number" value={namePro.id_brand} name="id_brand" placeholder="Brand product..." onChange={handleChange} /> */}
                         <SelectBrand itemSelected={namePro.id_brand} onChange={handleChange} />
                     </Col>
                 </FormGroup>
                 <FormGroup>
                     <Col>
                         <Label sm={4}>Category</Label>
-                        {/* <Input type="number" value={namePro.id_category} name="id_category" placeholder="Category product..." onChange={handleChange} /> */}
                         <SelectCategory itemSelected={namePro.id_category} onChange={handleChange} />
                     </Col>
                 </FormGroup>

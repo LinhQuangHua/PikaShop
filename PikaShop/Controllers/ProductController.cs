@@ -26,6 +26,7 @@ namespace PikaShop.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IStorageService _storageService;
         private readonly IRateRepository _rateRepository;
+
         public ProductController(ApplicationDbContext context, IStorageService storageService, IRateRepository rateRepository)
         {
             _context = context;
@@ -159,6 +160,8 @@ namespace PikaShop.Controllers
                 return NotFound();
             }
 
+            await _storageService.DeleteFileAsync(product.image);
+
             if (productCreateRequest.name_product != null) product.name_product = productCreateRequest.name_product;
             if (productCreateRequest.price > 0) product.price = productCreateRequest.price;
             if (productCreateRequest.height > 0) product.height = productCreateRequest.height;
@@ -171,7 +174,6 @@ namespace PikaShop.Controllers
             if (productCreateRequest.ThumbnailImage != null)
             {
                 product.image = await SaveFile(productCreateRequest.ThumbnailImage);
-                product.image = productCreateRequest.ThumbnailImage.ToString();
             }
 
             await _context.SaveChangesAsync();
@@ -225,6 +227,7 @@ namespace PikaShop.Controllers
                 return NotFound();
             }
 
+            await _storageService.DeleteFileAsync(product.image);
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 

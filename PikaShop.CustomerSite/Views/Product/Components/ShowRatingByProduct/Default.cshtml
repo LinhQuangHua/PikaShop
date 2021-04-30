@@ -15,8 +15,20 @@
         width: 220px;
     }
 
-    .card{
-        width: 12rem;
+    #rating {
+        width: 15rem;
+        margin-right: 35px;
+        margin-bottom: 20px;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    div > p.card-date, p.card-comment
+    {
+        color: #000000;
     }
 </style>
 @if (Model.Count == 0)
@@ -30,26 +42,24 @@ else {
         <h4>Comments</h4>
     </div>
 }
-<div class="row">
+<div class="flex-container">
     @foreach (var rating in Model)
     {
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <img src="~/image/avatar-cirle.png" alt="Avatar" class="avatar">
-                    <p class="card-date">@rating.date</p>
-                    <p class="card-comment">@rating.comment</p>
-                    <span>
-                        @{ for (int i = 1; i <= rating.totalStar; i++)
-                            {
-                                <i class="fa fa-star" style="color:yellow"></i>
-                            }
-                            for (int i = 1; i <= 5 - rating.totalStar; i++)
-                            {
-                                <i class="fa fa-star"></i> 
-                            } }
-                    </span>
-                </div>
+        <div class="card" id="rating">
+            <div class="card-body">
+                <img src="~/image/avatar-cirle.png" alt="Avatar" class="avatar">
+                <p class="card-date">@rating.date</p>
+                <p class="card-comment">@rating.comment</p>
+                <span>
+                    @{ for (int i = 1; i <= rating.totalStar; i++)
+                        {
+                            <i class="fa fa-star" style="color:yellow"></i>
+                        }
+                        for (int i = 1; i <= 5 - rating.totalStar; i++)
+                        {
+                            <i class="fa fa-star"></i> 
+                        } }
+                </span>
             </div>
         </div>
     }

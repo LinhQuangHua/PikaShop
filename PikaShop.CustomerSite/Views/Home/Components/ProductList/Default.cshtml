@@ -11,15 +11,16 @@
     .card {
         width: 15rem;
         margin-bottom: 50px;
+        margin-right: 30px;
     }
 
     .card-title {
         text-align: center;
     }
 
-        .card-title:hover {
-            color: red;
-        }
+    .card-title:hover {
+        color: red;
+    }
 
     img {
         padding: 1rem;
@@ -38,15 +39,21 @@
         margin-top: 70px;
         margin-bottom: 30px;
     }
+
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>
 <div class="section_title text-center">
     <h3>All products</h3>
 </div>
-<div class="row">
+@*<div class="row">*@
+<div class="flex-container">
     @foreach (var product in Model)
     {
         <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
-            <div class="col">
+            @*<div class="col">*@
                 <div class="card">
                     <img src="@Config.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
                     <div class="card-body">
@@ -56,14 +63,14 @@
                         <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.id_product">Buy Now!</a>
                     </div>
                 </div>
-            </div>
+            @*</div>*@
         </a>}
 </div>
 
 @Html.PagedListPager((IPagedList)Model, page => Url.Action("Shop", new { page = page }),
         new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
         {
-            DisplayItemSliceAndTotal = true,
+            DisplayItemSliceAndTotal = false,
             ContainerDivClasses = new[] { "navigation" },
             LiElementClasses = new[] { "page-item" },
             PageClasses = new[] { "page-link" },

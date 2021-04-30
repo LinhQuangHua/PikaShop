@@ -7,6 +7,8 @@
 
     .card {
         width: 15rem;
+        margin-right: 35px;
+        margin-bottom: 20px;
     }
 
     .card-title {
@@ -34,23 +36,26 @@
         margin-top: 70px;
         margin-bottom: 30px;
     }
+
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>
 <div class="section_title text-center">
     <h4>Related product</h4>
 </div>
-<div class="row">
+<div class="flex-container">
     @foreach (var product in Model)
     {
         <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
-            <div class="col">
-                <div class="card">
-                    <img src="@Config.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
-                    <div class="card-body">
-                        <h5 class="card-title">@product.name_product</h5>
-                        <p class="card-description">@product.description</p>
-                        <p class="price">Price: $@product.price</p>
-                        <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.id_product">Buy Now!</a>
-                    </div>
+            <div class="card">
+                <img src="@Config.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
+                <div class="card-body">
+                    <h5 class="card-title">@product.name_product</h5>
+                    <p class="card-description">@product.description</p>
+                    <p class="price">Price: $@product.price</p>
+                    <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.id_product">Buy Now!</a>
                 </div>
             </div>
         </a>

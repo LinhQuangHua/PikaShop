@@ -9,6 +9,7 @@
     .card {
         width: 15rem;
         margin-top: 1rem;
+        margin-right: 35px;
     }
 
     .card-title {
@@ -41,17 +42,21 @@
     {
         margin-bottom: 150px
     }
+
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>
 <div class="section_title text-center">
     <h3>List product!</h3>
 </div>
 <div class="space">
-    <div class="row">
+    <div class="flex-container">
         @foreach (var product in Model)
         {
             <a asp-action="Details" asp-controller="Product" asp-route-id="@product.id_product">
-                <div class="col">
-                    <div class="card">
+                <div class="card">
                         <img src="@Config.ApiUrl/@product.ThumbnailImageUrl" class="card-img-top" alt="Image game." />
                         <div class="card-body">
                             <h5 class="card-title">@product.name_product</h5>
@@ -60,7 +65,6 @@
                             <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="BuyNow" asp-route-id="@product.id_product">Buy Now!</a>
                         </div>
                     </div>
-                </div>
             </a>
           }
     </div>

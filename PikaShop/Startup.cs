@@ -23,6 +23,7 @@ namespace PikaShop
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,6 +37,7 @@ namespace PikaShop
             {
                 ["Mvc"] = Configuration["ClientUrl:Mvc"],
                 ["Swagger"] = Configuration["ClientUrl:Swagger"],
+                ["Angular"] = Configuration["ClientUrl:Angular"],
                 ["React"] = Configuration["ClientUrl:React"]
             };
 
@@ -86,6 +88,17 @@ namespace PikaShop
             services.AddControllersWithViews()
                  .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins(clientUrls["Angular"])
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
             services.AddSwaggerGen(c =>
             {
